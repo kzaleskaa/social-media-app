@@ -1,5 +1,7 @@
+import StartPage from "./pages/Start";
+
 const App = () => {
-  return <div>Hello!</div>;
-}
+  return <StartPage />;
+};
 
 export default App;
