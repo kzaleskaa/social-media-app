@@ -3,3 +3,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --riple: #daecf3;
+  --crush: #fe424d;
+  --seafloor: #1aa6b7;
+  --cyprus: #022d41;
+}
+
+body {
+  min-height: 100vh;
+}

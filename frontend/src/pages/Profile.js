@@ -1,5 +1,13 @@
+import Information from "../components/profile/Information";
+import Posts from "../components/profile/Posts";
+
 const Profile = () => {
-  return <h1>Profile</h1>;
+  return (
+    <>
+      <Information />
+      <Posts />
+    </>
+  );
 };
 
 export default Profile;
