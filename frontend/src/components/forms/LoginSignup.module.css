@@ -1,15 +1,17 @@
-.login-wrapper {
+.form-wrapper {
   width: 90%;
   max-width: 450px;
   padding: 20px;
   border: 1px solid grey;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
   text-align: center;
+  row-gap: 10px;
 }
