@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -5,12 +7,38 @@
 }
 
 :root {
-  --riple: #daecf3;
-  --crush: #fe424d;
-  --seafloor: #1aa6b7;
-  --cyprus: #022d41;
+  /* PRIMARY */
+  --pale-violet: hsl(276, 100%, 81%);
+  --moderate-violet: hsl(276, 55%, 52%);
+  --desaturated-dark-violet: hsl(271, 15%, 43%);
+  --grayish-blue: hsl(206, 6%, 79%);
+  --very-dark-desaturated-violet: hsl(271, 36%, 24%);
+  --dark-grayish-violet: hsl(270, 7%, 64%);
+
+  /* GRADIENT */
+  --light-magenta: hsl(293, 100%, 63%);
+  --light-violet: hsl(264, 100%, 61%);
+
+  /* SECONDARY */
+  --white: hsl(0, 0%, 100%);
+  --light-grayish-violet: hsl(270, 20%, 96%);
+  --very-dark-desaturated-violet: hsl(271, 36%, 24%);
+  --very-light-magenta: hsl(289, 100%, 72%);
 }
 
 body {
   min-height: 100vh;
+  font-family: "Rubik", sans-serif;
+  overflow-x: hidden;
+  background-color: var(--light-grayish-violet);
+}
+
+h1 {
+  color: var(--cyprus);
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+input {
+  padding: 5px;
 }
