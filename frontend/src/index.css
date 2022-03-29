@@ -42,3 +42,11 @@ h1 {
 input {
   padding: 5px;
 }
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

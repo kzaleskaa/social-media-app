@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import classes from "./LoginSignup.module.css";
+import { connect } from "react-redux";
 
-const Login = () => {
+import { login } from "../../actions/auth";
+import classes from "./LoginSignupForm.module.css";
+
+const Login = ({ login }) => {
   const [enteredData, setEnteredData] = useState({ email: "", password: "" });
 
   const { enteredEmail, enteredPassword } = enteredData;
@@ -13,12 +16,9 @@ const Login = () => {
     setEnteredData(updatedData);
   };
 
-  console.log(enteredData);
-
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
-    console.log(enteredData);
+    login(enteredData.email, enteredData.password);
   };
 
   return (
@@ -61,4 +61,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+// const mapStateToProps = state => {
+//   // is authenticated?
+// }
+
+export default connect(null, { login })(Login);

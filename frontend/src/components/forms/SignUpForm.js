@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
-import classes from "./LoginSignup.module.css";
+import classes from "./LoginSignupForm.module.css";
 
 const SignUp = () => {
   const [enteredData, setEnteredData] = useState({
@@ -90,7 +90,7 @@ const SignUp = () => {
       </div>
       <div className={classes["form-wrapper"]}>
         <p>Have an account?</p>
-        <NavLink to="/">Log in</NavLink>
+        <NavLink to="/login">Log in</NavLink>
       </div>
     </div>
   );

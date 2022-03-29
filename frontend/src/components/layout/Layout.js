@@ -1,11 +1,12 @@
 import Footer from "./Footer";
-import Header from "./Header";
+import MainNavigation from "./MainNavigation";
+import { Outlet } from "react-router";
 
 const Layout = (props) => {
   return (
     <>
-      <Header />
-      <main>{props.children}</main>
+      <MainNavigation />
+      <Outlet />
       <Footer />
     </>
   );
