@@ -1,22 +1,24 @@
 import { Route, Routes } from "react-router";
 import React, { Suspense } from "react";
+import { checkAuthentication, loadUser } from "./actions/auth";
+
+import { Outlet, useNavigate } from "react-router";
+import { useEffect } from "react";
 import * as Loader from "react-loader-spinner";
 
+import { connect } from "react-redux";
 import Layout from "./components/layout/Layout";
-
-import { Provider } from "react-redux";
-import store from "./store";
+import MainLayout from "./components/layout/MainLayout";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const SignUp = React.lazy(() => import("./pages/Signup"));
 const Login = React.lazy(() => import("./pages/Login"));
 const Profile = React.lazy(() => import("./pages/Profile"));
 
-const App = () => {
+const App = (props) => {
   const style = { display: "flex", justifyContent: "center" };
-
   return (
-    <Provider store={store}>
+    <MainLayout>
       <Suspense
         fallback={
           <div style={style}>
@@ -33,8 +35,8 @@ const App = () => {
           </Route>
         </Routes>
       </Suspense>
-    </Provider>
+    </MainLayout>
   );
 };
 
-export default App;
+export default connect(null, { checkAuthentication, loadUser })(App);

@@ -83,7 +83,11 @@ const SignUp = () => {
             onChange={onChangeHandler}
             required
           />
-          <button type="submit" onSubmit={onSubmitHandler}>
+          <button
+            className={classes["btn-submit"]}
+            type="submit"
+            onSubmit={onSubmitHandler}
+          >
             Sign Up
           </button>
         </form>

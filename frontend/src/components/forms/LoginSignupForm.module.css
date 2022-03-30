@@ -49,13 +49,18 @@ h1 {
   line-height: 2;
 }
 
-button {
+.btn-submit {
   padding: 10px;
   color: var(--white);
   border: none;
   background-color: var(--light-violet);
-  cursor: pointer;
   transition: 0.4s;
+}
+
+.btn-social {
+  font-weight: 500;
+  border: none;
+  background-color: transparent;
 }
 
 button:hover {

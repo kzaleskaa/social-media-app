@@ -3,6 +3,15 @@
   flex-direction: column;
 }
 
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1.6;
+  padding: 10px 0px;
+}
+
 .photo-container {
   width: 100px;
   aspect-ratio: 1/1;
@@ -40,7 +49,18 @@
 
 @media (min-width: 1024px) {
   .header {
+    justify-content: center;
     flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+    border-bottom: 1px solid var(--grayish-blue);
+    padding: 30px 0px;
+  }
+
+  .user {
+    align-items: left;
+    text-align: left;
+    padding: 0;
   }
 
   .info-container {

@@ -3,11 +3,48 @@ import {
   LOGIN_FAIL,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  AUTHENTICATED_FAIL,
+  AUTHENTICATED_SUCCESS,
+  LOGOUT,
 } from "../types/types";
 
 import axios from "axios";
 
-export const load_user = () => async (dispatch) => {
+export const checkAuthentication = () => async (dispatch) => {
+  if (localStorage.getItem("access")) {
+    const configuration = {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    };
+
+    const data = JSON.stringify({ token: localStorage.getItem("access") });
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/auth/jwt/verify/",
+        data,
+        configuration
+      );
+
+      if (response.data.code === "token_not_valid") {
+        dispatch({ type: AUTHENTICATED_FAIL });
+      } else {
+        dispatch({ type: AUTHENTICATED_SUCCESS });
+      }
+    } catch (err) {
+      dispatch({ type: AUTHENTICATED_FAIL });
+    }
+  } else {
+    dispatch({ type: AUTHENTICATED_FAIL });
+  }
+};
+
+export const logout = () => async (dispatch) => {
+  dispatch({ type: LOGOUT });
+};
+
+export const loadUser = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const configuration = {
       headers: {
@@ -31,8 +68,7 @@ export const load_user = () => async (dispatch) => {
   }
 };
 
-export const login = (email, password) => async dispatch => {
-
+export const login = (email, password) => async (dispatch) => {
   const configuration = {
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +86,7 @@ export const login = (email, password) => async dispatch => {
 
     dispatch({ type: LOGIN_SUCCESS, payload: response.data });
 
-    dispatch(load_user());
+    dispatch(loadUser());
   } catch (err) {
     dispatch({ type: LOGIN_FAIL });
   }

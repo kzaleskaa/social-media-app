@@ -45,12 +45,12 @@ const Login = ({ login }) => {
               onChange={onChangeHandler}
               required
             />
-            <button type="submit" onSubmit={onSubmitHandler}>
+            <button className={classes["btn-submit"]} type="submit" onSubmit={onSubmitHandler}>
               Log In
             </button>
           </form>
           <span>or</span>
-          <button type="button">Log In with Facebook</button>
+          <button className={classes["btn-social"]} type="button">Log In with Facebook</button>
         </div>
       </div>
       <div className={classes["form-wrapper"]}>
@@ -61,8 +61,5 @@ const Login = ({ login }) => {
   );
 };
 
-// const mapStateToProps = state => {
-//   // is authenticated?
-// }
 
 export default connect(null, { login })(Login);

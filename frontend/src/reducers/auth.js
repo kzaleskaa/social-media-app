@@ -3,6 +3,9 @@ import {
   LOGIN_FAIL,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_FAIL,
+  LOGOUT,
 } from "../types/types";
 
 const initialState = {
@@ -37,6 +40,26 @@ const authReducer = (state = initialState, action) => {
         access: null,
         refresh: null,
         user: null,
+      };
+    case LOGOUT:
+      localStorage.removeItem("access");
+      localStorage.removeItem("refresh");
+      return {
+        ...state,
+        isAuthenticated: false,
+        access: null,
+        refresh: null,
+        user: null,
+      };
+    case AUTHENTICATED_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+      };
+    case AUTHENTICATED_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
       };
     default:
       return state;

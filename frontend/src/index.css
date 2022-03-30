@@ -1,10 +1,8 @@
+/* FONT */
+
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* COLORS */
 
 :root {
   /* PRIMARY */
@@ -26,6 +24,28 @@
   --very-light-magenta: hsl(289, 100%, 72%);
 }
 
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* STYLES */
+
 body {
   min-height: 100vh;
   font-family: "Rubik", sans-serif;
@@ -43,10 +63,7 @@ input {
   padding: 5px;
 }
 
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
+#root {
+  max-width: 1024px;
+  margin: 0 auto;
 }
