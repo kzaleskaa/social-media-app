@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { checkAuthentication, loadUser } from "../../actions/auth";
+import { checkAuthentication } from "../../actions/checkAuthenticationAction";
+import { loadUser } from "../../actions/loginAction";
 
 import { connect } from "react-redux";
 
@@ -7,8 +8,9 @@ const MainLayout = (props) => {
   useEffect(() => {
     props.checkAuthentication();
     props.loadUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   return <div>{props.children}</div>;
 };
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { login } from "../../actions/auth";
+import { login } from "../../actions/loginAction";
 import classes from "./LoginSignupForm.module.css";
 
 const Login = ({ login }) => {
@@ -45,12 +45,19 @@ const Login = ({ login }) => {
               onChange={onChangeHandler}
               required
             />
-            <button className={classes["btn-submit"]} type="submit" onSubmit={onSubmitHandler}>
+            <button
+              className={classes["btn-submit"]}
+              type="submit"
+              onSubmit={onSubmitHandler}
+            >
               Log In
             </button>
           </form>
           <span>or</span>
-          <button className={classes["btn-social"]} type="button">Log In with Facebook</button>
+          <button className={classes["btn-social"]} type="button">
+            Log In with Facebook
+          </button>
+          <NavLink className={classes["reset-password"]} to="/reset-password">Forgot password?</NavLink>
         </div>
       </div>
       <div className={classes["form-wrapper"]}>
@@ -60,6 +67,5 @@ const Login = ({ login }) => {
     </div>
   );
 };
-
 
 export default connect(null, { login })(Login);

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 
 import { useEffect } from "react";
 
-import { logout } from "../../actions/auth";
+import { logout } from "../../actions/logoutAction";
 import { connect } from "react-redux";
 
 import classes from "./MainNavigation.module.css";
@@ -35,6 +35,11 @@ const MainNavigation = ({ logout, isAuthenticated }) => {
           <li>
             <NavLink to="/profile" onClick={() => setShowUserOptions(false)}>
               Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/reset-password" onClick={() => setShowUserOptions(false)}>
+              Change Password
             </NavLink>
           </li>
           <li>

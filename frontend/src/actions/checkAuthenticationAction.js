@@ -1,8 +1,4 @@
-import {
-  AUTHENTICATED_FAIL,
-  AUTHENTICATED_SUCCESS,
-  LOGOUT,
-} from "../types/types";
+import { AUTHENTICATED_FAIL, AUTHENTICATED_SUCCESS } from "../types/types";
 
 import axios from "axios";
 

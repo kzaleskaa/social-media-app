@@ -6,6 +6,10 @@ import {
   AUTHENTICATED_SUCCESS,
   AUTHENTICATED_FAIL,
   LOGOUT,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAIL,
+  PASSWORD_CONFIRMATION_SUCCESS,
+  PASSWORD_CONFIRMATION_FAIL,
 } from "../types/types";
 
 const initialState = {
@@ -61,6 +65,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: false,
       };
+    case CHANGE_PASSWORD_SUCCESS:
+    case CHANGE_PASSWORD_FAIL:
+    case PASSWORD_CONFIRMATION_SUCCESS:
+    case PASSWORD_CONFIRMATION_FAIL:
+      return { ...state };
     default:
       return state;
   }

@@ -6,7 +6,8 @@ import { useEffect } from "react";
 
 import { connect } from "react-redux";
 
-import { checkAuthentication, loadUser } from "../actions/auth";
+import { checkAuthentication } from "../actions/checkAuthenticationAction";
+import { loadUser } from "../actions/loginAction";
 
 const Signup = ({ isAuthenticated }) => {
   const navigate = useNavigate();

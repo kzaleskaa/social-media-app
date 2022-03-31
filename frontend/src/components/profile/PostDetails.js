@@ -25,7 +25,7 @@ const PostDetails = (props) => {
 
   return (
     <>
-      <div onClick={showModalHandler}>
+      <div className={classes.post} onClick={showModalHandler}>
         <img src={props.item.img} alt="post" />
       </div>
       {modalIsShow && (
