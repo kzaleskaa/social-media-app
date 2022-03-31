@@ -16,6 +16,9 @@
   color: black;
   letter-spacing: 2px;
   transition: 0.7s;
+}
+
+.links-list li {
   cursor: pointer;
 }
 

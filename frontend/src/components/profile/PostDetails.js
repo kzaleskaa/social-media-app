@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as IconsSolid from "@fortawesome/free-solid-svg-icons";
-import * as IconsRegular from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 
 import classes from "./PostDetails.module.css";
-import Modal from "../UI/Modal";
+import Modal from "../modal/Modal";
 
 const PostDetails = (props) => {
   const [modalIsShow, setModalIsShown] = useState(false);
@@ -31,12 +31,12 @@ const PostDetails = (props) => {
       {modalIsShow && (
         <Modal onCloseModal={hideModalHandler}>
           <div className={classes.container}>
-            <div className={classes.photo}>
+            <div className={classes.photo} onDoubleClick={likeHandler}>
               <img src={props.item.img} alt="post" />
             </div>
             <div className={classes.comments}>
               <FontAwesomeIcon
-                icon={like ? IconsSolid.faHeart : IconsRegular.faHeart}
+                icon={like ? faHeartSolid : faHeartRegular}
                 color={like ? "#be0000" : "black"}
                 onClick={likeHandler}
               />

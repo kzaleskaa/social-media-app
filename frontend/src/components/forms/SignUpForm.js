@@ -2,8 +2,6 @@ import { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
-import classes from "./LoginSignupForm.module.css";
-
 const SignUp = () => {
   const [enteredData, setEnteredData] = useState({
     email: "",
@@ -34,10 +32,10 @@ const SignUp = () => {
   };
 
   return (
-    <div className={classes["page-content"]}>
-      <div className={classes["form-wrapper"]}>
+    <>
+      <div className="form-wrapper">
         <h1>Sign Up</h1>
-        <form className={classes.form} onSubmit={onSubmitHandler}>
+        <form className="form" onSubmit={onSubmitHandler}>
           <input
             id="email"
             name="email"
@@ -84,7 +82,7 @@ const SignUp = () => {
             required
           />
           <button
-            className={classes["btn-submit"]}
+            className="btn-submit"
             type="submit"
             onSubmit={onSubmitHandler}
           >
@@ -92,11 +90,11 @@ const SignUp = () => {
           </button>
         </form>
       </div>
-      <div className={classes["form-wrapper"]}>
+      <div className="form-wrapper">
         <p>Have an account?</p>
-        <NavLink to="/login">Log in</NavLink>
+        <NavLink to="/auth/login">Log in</NavLink>
       </div>
-    </div>
+    </>
   );
 };
 

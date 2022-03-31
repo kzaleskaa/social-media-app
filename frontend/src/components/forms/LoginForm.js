@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { login } from "../../actions/loginAction";
-import classes from "./LoginSignupForm.module.css";
 
 const Login = ({ login }) => {
   const [enteredData, setEnteredData] = useState({ email: "", password: "" });
@@ -22,11 +21,11 @@ const Login = ({ login }) => {
   };
 
   return (
-    <div className={classes["page-content"]}>
-      <div className={classes["form-wrapper"]}>
+    <>
+      <div className="form-wrapper">
         <h1>Log In</h1>
-        <div className={classes.form}>
-          <form className={classes.form} onSubmit={onSubmitHandler}>
+        <div className="form">
+          <form className="form" onSubmit={onSubmitHandler}>
             <input
               id="email"
               name="email"
@@ -46,7 +45,7 @@ const Login = ({ login }) => {
               required
             />
             <button
-              className={classes["btn-submit"]}
+              className="btn-submit"
               type="submit"
               onSubmit={onSubmitHandler}
             >
@@ -54,17 +53,19 @@ const Login = ({ login }) => {
             </button>
           </form>
           <span>or</span>
-          <button className={classes["btn-social"]} type="button">
+          <button className="btn-social" type="button">
             Log In with Facebook
           </button>
-          <NavLink className={classes["reset-password"]} to="/reset-password">Forgot password?</NavLink>
+          <NavLink className="reset-password" to="/auth/reset-password">
+            Forgot password?
+          </NavLink>
         </div>
       </div>
-      <div className={classes["form-wrapper"]}>
+      <div className="form-wrapper">
         <p>Don't have an account?</p>
-        <NavLink to="/sign-up">Sign up</NavLink>
+        <NavLink to="/auth/sign-up">Sign up</NavLink>
       </div>
-    </div>
+    </>
   );
 };
 

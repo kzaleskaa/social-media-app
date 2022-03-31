@@ -8,15 +8,18 @@ import * as Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import Layout from "./components/layout/Layout";
 import MainLayout from "./components/layout/MainLayout";
-import ChangePassword from "./pages/ChangePassword";
-import ChangePasswordConfirm from "./pages/ChangePasswordConfirm";
+import LoginLayout from "./components/layout/LoginLayout";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const SignUp = React.lazy(() => import("./pages/Signup"));
 const Login = React.lazy(() => import("./pages/Login"));
 const Profile = React.lazy(() => import("./pages/Profile"));
+const ChangePassword = React.lazy(() => import("./pages/ChangePassword"));
+const ChangePasswordConfirm = React.lazy(() =>
+  import("./pages/ChangePasswordConfirm")
+);
 
-const App = (props) => {
+const App = () => {
   const style = { display: "flex", justifyContent: "center" };
   return (
     <MainLayout>
@@ -28,13 +31,15 @@ const App = (props) => {
         }
       >
         <Routes>
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/reset-password" element={<ChangePassword />} />
-          <Route
-            path="/password/reset/confirm/:uid/:token"
-            element={<ChangePasswordConfirm />}
-          />
+          <Route path="/auth" element={<LoginLayout />}>
+            <Route path="/auth/sign-up" element={<SignUp />} />
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/reset-password" element={<ChangePassword />} />
+            <Route
+              path="/auth/password/reset/confirm/:uid/:token"
+              element={<ChangePasswordConfirm />}
+            />
+          </Route>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />

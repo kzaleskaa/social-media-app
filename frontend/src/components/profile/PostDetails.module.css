@@ -9,7 +9,9 @@
 }
 
 .photo {
+  position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .comments {
