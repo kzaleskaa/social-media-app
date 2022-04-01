@@ -1,8 +1,11 @@
 import { useState } from "react";
 
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { connect } from "react-redux";
+import { signUpNewUser } from "../../actions/signUpActions";
 
-const SignUp = () => {
+const SignUp = ({ signUpNewUser }) => {
   const [enteredData, setEnteredData] = useState({
     email: "",
     first_name: "",
@@ -10,6 +13,8 @@ const SignUp = () => {
     password1: "",
     password2: "",
   });
+
+  const navigate = useNavigate();
 
   const {
     enteredEmail,
@@ -28,6 +33,16 @@ const SignUp = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
+    if (enteredData.password1 === enteredData.password2) {
+      signUpNewUser(
+        enteredData.first_name,
+        enteredData.last_name,
+        enteredData.email,
+        enteredData.password1,
+        enteredData.password2
+      );
+      navigate("/auth/login");
+    }
     console.log(enteredData);
   };
 
@@ -98,4 +113,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default connect(null, { signUpNewUser })(SignUp);

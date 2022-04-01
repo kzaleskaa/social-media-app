@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import Layout from "./components/layout/Layout";
 import MainLayout from "./components/layout/MainLayout";
 import LoginLayout from "./components/layout/LoginLayout";
+import ActivateAccount from "./pages/ActivateAccount";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const SignUp = React.lazy(() => import("./pages/Signup"));
@@ -38,6 +39,10 @@ const App = () => {
             <Route
               path="/auth/password/reset/confirm/:uid/:token"
               element={<ChangePasswordConfirm />}
+            />
+            <Route
+              path="/auth/activate/:uid/:token"
+              element={<ActivateAccount />}
             />
           </Route>
           <Route path="/" element={<Layout />}>

@@ -10,6 +10,10 @@ import {
   CHANGE_PASSWORD_FAIL,
   PASSWORD_CONFIRMATION_SUCCESS,
   PASSWORD_CONFIRMATION_FAIL,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
+  ACTIVATION_SUCCESS,
+  ACTIVATION_FAIL,
 } from "../types/types";
 
 const initialState = {
@@ -35,17 +39,11 @@ const authReducer = (state = initialState, action) => {
       return { ...state, user: payload };
     case LOAD_USER_SUCCESS:
       return { ...state, user: null };
+    case SIGNUP_SUCCESS:
+      return { ...state, isAuthenticated: false };
     case LOGIN_FAIL:
-      localStorage.removeItem("access");
-      localStorage.removeItem("refresh");
-      return {
-        ...state,
-        isAuthenticated: false,
-        access: null,
-        refresh: null,
-        user: null,
-      };
     case LOGOUT:
+    case SIGNUP_FAIL:
       localStorage.removeItem("access");
       localStorage.removeItem("refresh");
       return {
@@ -69,6 +67,8 @@ const authReducer = (state = initialState, action) => {
     case CHANGE_PASSWORD_FAIL:
     case PASSWORD_CONFIRMATION_SUCCESS:
     case PASSWORD_CONFIRMATION_FAIL:
+    case ACTIVATION_FAIL:
+    case ACTIVATION_SUCCESS:
       return { ...state };
     default:
       return state;

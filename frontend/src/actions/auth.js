@@ -1,7 +1,6 @@
 import {
   AUTHENTICATED_FAIL,
   AUTHENTICATED_SUCCESS,
-  LOGOUT,
 } from "../types/types";
 
 import axios from "axios";
