@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import Layout from "./components/layout/Layout";
 import MainLayout from "./components/layout/MainLayout";
 import LoginLayout from "./components/layout/LoginLayout";
-import ActivateAccount from "./pages/ActivateAccount";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const SignUp = React.lazy(() => import("./pages/Signup"));
@@ -19,6 +18,7 @@ const ChangePassword = React.lazy(() => import("./pages/ChangePassword"));
 const ChangePasswordConfirm = React.lazy(() =>
   import("./pages/ChangePasswordConfirm")
 );
+const ActivateAccount = React.lazy(() => import("./pages/ActivateAccount"));
 
 const App = () => {
   const style = { display: "flex", justifyContent: "center" };

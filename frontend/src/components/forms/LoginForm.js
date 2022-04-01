@@ -2,6 +2,9 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+
 import { login } from "../../actions/loginAction";
 
 const Login = ({ login }) => {
@@ -52,8 +55,20 @@ const Login = ({ login }) => {
               Log In
             </button>
           </form>
-          <span>or</span>
+          <span className="separator">
+            <span className="line" />
+            <p>or</p>
+            <span className="line" />
+          </span>
           <button className="btn-social" type="button">
+            <FontAwesomeIcon
+              icon={faFacebookSquare}
+              style={{
+                marginRight: "6px",
+                color: "#3b5998",
+                fontSize: "14px",
+              }}
+            />
             Log In with Facebook
           </button>
           <NavLink className="reset-password" to="/auth/reset-password">
