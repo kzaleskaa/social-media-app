@@ -10,11 +10,17 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   return (
     <div className={styles.modal}>
-      <button className={styles["left-btn"]}>
+      <button
+        className={styles["left-btn"]}
+        onClick={props.changePostBackHandler}
+      >
         <span className={`${styles.arrow} ${styles["arrow-left"]}`} />
       </button>
       <div className={styles.content}>{props.children}</div>
-      <button className={styles["right-btn"]}>
+      <button
+        className={styles["right-btn"]}
+        onClick={props.changePostNextHandler}
+      >
         <span className={`${styles.arrow} ${styles["arrow-right"]}`} />
       </button>
       <button className={styles.close} onClick={props.onClose}>
@@ -37,6 +43,8 @@ const Modal = (props) => {
         <ModalOverlay
           onClose={props.onCloseModal}
           className={`modal ${props.classes}`}
+          changePostNextHandler={props.changePostNextHandler}
+          changePostBackHandler={props.changePostBackHandler}
         >
           {props.children}
         </ModalOverlay>,
