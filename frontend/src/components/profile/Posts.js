@@ -1,13 +1,5 @@
-const DUMMY_POSTS = [
-  { img: "./photo.jpg" },
-  { img: "./photo2.jpg" },
-  { img: "./photo3.jpg" },
-  { img: "./photo.jpg" },
-];
-
-/* eslint-disable import/first */
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
@@ -18,6 +10,7 @@ const Posts = () => {
   const [modalIsShow, setModalIsShown] = useState(false);
   const [like, setLike] = useState(false);
   const [showNumber, setShowNumber] = useState(0);
+  const [posts, setPosts] = useState([]);
 
   const showModalHandler = (e) => {
     setShowNumber(Number(e.target.id));
@@ -33,7 +26,7 @@ const Posts = () => {
   };
 
   const changePostNextHandler = () => {
-    if (showNumber + 1 < DUMMY_POSTS.length) {
+    if (showNumber + 1 < posts.length) {
       setShowNumber(showNumber + 1);
     }
   };
@@ -42,25 +35,50 @@ const Posts = () => {
     if (showNumber - 1 >= 0) {
       setShowNumber(showNumber - 1);
     }
-    console.log("here")
+    console.log("here");
   };
 
+  const loadPosts = async () => {
+    const configuration = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem("access")}`,
+      },
+    };
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/posts",
+        configuration
+      );
+      setPosts(response.data.posts);
+    } catch (err) {
+      alert(err);
+    }
+  };
 
-  console.log(DUMMY_POSTS.length)
+  useEffect(() => {
+    loadPosts();
+  }, []);
+
   return (
     <>
       <div className={classes["posts-container"]}>
-        {DUMMY_POSTS.map((item, index) => (
+        {posts.map((item, index) => (
           <div
             className={classes.post}
             onClick={showModalHandler}
             key={index}
             id={index}
           >
-            <img src={item.img} alt="post" id={index} />
+            <img
+              src={`http://127.0.0.1:8000${item.image}`}
+              alt="post"
+              id={index}
+            />
           </div>
         ))}
       </div>
+
       {modalIsShow && (
         <Modal
           onCloseModal={hideModalHandler}
@@ -69,7 +87,10 @@ const Posts = () => {
         >
           <div className={classes.container}>
             <div className={classes.photo} onDoubleClick={likeHandler}>
-              <img src={DUMMY_POSTS[showNumber].img} alt="post" />
+              <img
+                src={`http://127.0.0.1:8000${posts[showNumber].image}`}
+                alt="post"
+              />
             </div>
             <div className={classes.comments}>
               <FontAwesomeIcon
