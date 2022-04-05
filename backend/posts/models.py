@@ -1,6 +1,5 @@
 from django.db import models
 from users.models import User
-from django.core.validators import MinLengthValidator
 
 
 class Post(models.Model):

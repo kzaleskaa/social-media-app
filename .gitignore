@@ -31,5 +31,5 @@ __pycache__/
 # virtual environment
 **/venv
 
-# django
-settings.py
+# environment variables
+.env
