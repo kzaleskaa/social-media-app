@@ -12,10 +12,11 @@ export const loadUser = () => async (dispatch) => {
     const configuration = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `JWT ${localStorage.getItem("access")}`,
+        Authorization: `Bearer ${localStorage.getItem("access")}`,
         Accept: "application/json",
       },
     };
+
     try {
       const response = await axios.get(
         "http://127.0.0.1:8000/auth/users/me/",
