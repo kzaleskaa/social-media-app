@@ -7,9 +7,9 @@ const Backdrop = (props) => {
   return <div className={styles.backdrop} onClick={props.onClose}></div>;
 };
 
-const ModalOverlay = (props) => {
+const ModalOverlayPost = (props) => {
   return (
-    <div className={styles.modal}>
+    <div className={`${styles.modal} ${styles["modal-posts"]}`}>
       <button
         className={styles["left-btn"]}
         onClick={props.changePostBackHandler}
@@ -30,6 +30,17 @@ const ModalOverlay = (props) => {
   );
 };
 
+const ModalBasic = (props) => {
+  return (
+    <div className={styles.modal}>
+      <div className={styles.content}>{props.children}</div>
+      <button className={styles.close} onClick={props.onClose}>
+        x
+      </button>
+    </div>
+  );
+};
+
 const portalElement = document.getElementById("overlays");
 
 const Modal = (props) => {
@@ -40,14 +51,18 @@ const Modal = (props) => {
         portalElement
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay
-          onClose={props.onCloseModal}
-          className={`modal ${props.classes}`}
-          changePostNextHandler={props.changePostNextHandler}
-          changePostBackHandler={props.changePostBackHandler}
-        >
-          {props.children}
-        </ModalOverlay>,
+        props.typeOfModal ? (
+          <ModalOverlayPost
+            onClose={props.onCloseModal}
+            className={`modal ${props.classes}`}
+            changePostNextHandler={props.changePostNextHandler}
+            changePostBackHandler={props.changePostBackHandler}
+          >
+            {props.children}
+          </ModalOverlayPost>
+        ) : (
+          <ModalBasic onClose={props.onCloseModal}>{props.children}</ModalBasic>
+        ),
         portalElement
       )}
     </Fragment>

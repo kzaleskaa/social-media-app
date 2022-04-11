@@ -33,3 +33,6 @@ __pycache__/
 
 # environment variables
 .env
+
+# media files
+media

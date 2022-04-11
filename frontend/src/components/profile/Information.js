@@ -1,3 +1,4 @@
+import NewPost from "../forms/NewPostForm";
 import classes from "./Information.module.css";
 
 const Information = () => {
@@ -9,7 +10,7 @@ const Information = () => {
         </div>
         <div>
           <h3>@kzaleskaa</h3>
-          <h4>Kasia Zaleska</h4>
+          <h4>Kasia Zaleskddddddddda</h4>
         </div>
       </div>
       <div className={classes["info-container"]}>
@@ -30,6 +31,9 @@ const Information = () => {
             </div>
           </li>
         </ul>
+      </div>
+      <div className={classes["new-post"]}>
+        <NewPost />
       </div>
     </header>
   );

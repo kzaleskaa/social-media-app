@@ -102,6 +102,10 @@ input {
 }
 
 /* BUTTONS */
+button {
+  font-family: "Rubik", sans-serif;
+}
+
 .btn-submit {
   padding: 10px;
   color: var(--white);

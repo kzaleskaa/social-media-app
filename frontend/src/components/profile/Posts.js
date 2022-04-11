@@ -21,10 +21,6 @@ const Posts = () => {
     setModalIsShown(false);
   };
 
-  const likeHandler = () => {
-    setLike((prev) => !prev);
-  };
-
   const changePostNextHandler = () => {
     if (showNumber + 1 < posts.length) {
       setShowNumber(showNumber + 1);
@@ -35,7 +31,6 @@ const Posts = () => {
     if (showNumber - 1 >= 0) {
       setShowNumber(showNumber - 1);
     }
-    console.log("here");
   };
 
   const loadPosts = async () => {
@@ -55,7 +50,7 @@ const Posts = () => {
       alert(err);
     }
   };
-
+  
   useEffect(() => {
     loadPosts();
   }, []);
@@ -84,20 +79,35 @@ const Posts = () => {
           onCloseModal={hideModalHandler}
           changePostNextHandler={changePostNextHandler}
           changePostBackHandler={changePostBackHandler}
+          typeOfModal="posts"
         >
           <div className={classes.container}>
-            <div className={classes.photo} onDoubleClick={likeHandler}>
+            <div
+              className={classes.photo}
+              onDoubleClick={() => {
+                setLike((prev) => !prev);
+              }}
+            >
               <img
                 src={`http://127.0.0.1:8000${posts[showNumber].image}`}
                 alt="post"
               />
             </div>
-            <div className={classes.comments}>
-              <FontAwesomeIcon
-                icon={like ? faHeartSolid : faHeartRegular}
-                color={like ? "#be0000" : "black"}
-                onClick={likeHandler}
-              />
+            <div className={classes.info}>
+              <p>{posts[showNumber].description}</p>
+              <div className={classes.social}>
+                <FontAwesomeIcon
+                  icon={like ? faHeartSolid : faHeartRegular}
+                  color={like ? "#be0000" : "black"}
+                  onClick={() => {
+                    setLike((prev) => !prev);
+                  }}
+                />
+                <p>{new Date(posts[showNumber].date).toLocaleDateString()}</p>
+                <form>
+                  <input type="text" placeholder="Add new comment" />
+                </form>
+              </div>
             </div>
           </div>
         </Modal>

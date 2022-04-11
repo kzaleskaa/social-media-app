@@ -1,13 +1,10 @@
-import LoginForm from "../components/forms/LoginForm";
-
 import { useNavigate } from "react-router";
-
 import { useEffect } from "react";
-
 import { connect } from "react-redux";
-
 import { checkAuthentication } from "../actions/checkAuthenticationAction";
 import { loadUser } from "../actions/loginAction";
+
+import LoginForm from "../components/forms/LoginForm";
 
 const Login = ({ isAuthenticated }) => {
   const navigate = useNavigate();
@@ -26,6 +23,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { checkAuthentication, loadUser })(
-  Login
-);
+export default connect(mapStateToProps, { checkAuthentication, loadUser })(Login);

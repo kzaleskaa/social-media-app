@@ -28,13 +28,22 @@
   cursor: pointer;
 }
 
-.comments {
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
   border-top: 1px solid var(--grayish-blue);
   min-width: 40%;
 }
 
+.container .info .social {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 @media (min-width: 1024px) {
-  .comments {
+  .info {
     border-top: none;
     border-left: 1px solid var(--grayish-blue);
   }

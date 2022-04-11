@@ -1,9 +1,13 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Modal from "../modal/Modal";
+
+import classes from "./NewPostForm.module.css";
 
 const NewPost = () => {
   const enteredImage = useRef(null);
   const enteredDescrption = useRef("");
+  const [addPost, setAddPost] = useState(false);
 
   const addNewPostHandler = async (e) => {
     e.preventDefault();
@@ -19,34 +23,53 @@ const NewPost = () => {
     formData.append("description", enteredDescrption.current.value);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://127.0.0.1:8000/api/posts",
         formData,
         configuration
       );
       alert("You added new post!");
+      setAddPost(false);
     } catch (err) {
       alert(err);
     }
   };
 
   return (
-    <div>
-      <h1>Add new post</h1>
-      <form onSubmit={addNewPostHandler}>
-        <input
-          type="file"
-          name="post-img"
-          accept="image/*"
-          ref={enteredImage}
-          required
-        />
-        <input type="text" ref={enteredDescrption} />
-        <button type="submit" onSubmit={addNewPostHandler}>
-          Add
-        </button>
-      </form>
-    </div>
+    <>
+      <button
+        type="button"
+        onClick={() => {
+          setAddPost((prev) => !prev);
+        }}
+      >
+        Add new post
+      </button>
+      {addPost && (
+        <Modal
+          onCloseModal={() => {
+            setAddPost(false);
+          }}
+        >
+          <div className={classes.modal}>
+            <h1>Create your new post!</h1>
+            <form onSubmit={addNewPostHandler}>
+              <input
+                type="file"
+                name="post-img"
+                accept="image/*"
+                ref={enteredImage}
+                required
+              />
+              <input type="text" ref={enteredDescrption} />
+              <button type="submit" onSubmit={addNewPostHandler}>
+                Add
+              </button>
+            </form>
+          </div>
+        </Modal>
+      )}
+    </>
   );
 };
 
