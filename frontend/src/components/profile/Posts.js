@@ -50,7 +50,7 @@ const Posts = () => {
       alert(err);
     }
   };
-  
+
   useEffect(() => {
     loadPosts();
   }, []);
