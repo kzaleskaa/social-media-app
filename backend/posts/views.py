@@ -21,12 +21,11 @@ class ManagePostsViev(APIView):
             # sort user's post
             posts = Post.objects.order_by("-date")
 
-            #
             posts = PostsSerializer(posts, many=True)
 
             return Response({"posts": posts.data}, status=status.HTTP_200_OK)
 
-        except:
+        except Exception as error:
             return Response({'error': 'Something went wrong when listing posts.'},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -51,7 +50,47 @@ class ManagePostsViev(APIView):
             return Response({'success': 'New post was successfully created.'},
                             status=status.HTTP_201_CREATED)
 
-        except:
+        except Exception as error:
             return Response({'error': 'Something went wrong when creating post.'},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
+
+class ManagePostDetailViev(APIView):
+    """Update or delete post."""
+
+    def put(self, request, pk: int):
+        """Update existing post based on pk."""
+
+        try:
+            user = request.user
+
+            if not user.is_active:
+                return Response({'error': 'User does not have necessary permission to update post.'},
+                                status=status.HTTP_403_FORBIDDEN)
+
+            data = request.data
+            description = data["description"]
+
+            Post.objects.filter(pk=pk).update(description=description)
+
+            return Response({'success': 'Post updated successfully.'}, status=status.HTTP_200_OK)
+
+        except Exception as error:
+            return Response({'error': 'Something went wrong when updating post.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        """Delete existing post based on pk."""
+
+        try:
+            user = request.user
+
+            if not user.is_active:
+                return Response({'error': 'User does not have necessary permission to update post.'},
+                                status=status.HTTP_403_FORBIDDEN)
+
+            post = Post.objects.filter(pk=pk).delete()
+
+            return Response({'success': 'Post deleted successfully.'}, status=status.HTTP_200_OK)
+        except Exception as error:
+            return Response({'error': 'Something went wrong when deleting post.'}, status=status.HTTP_400_BAD_REQUEST)
