@@ -61,7 +61,7 @@ const NewPost = () => {
                 ref={enteredImage}
                 required
               />
-              <input type="text" ref={enteredDescrption} />
+              <input type="text" ref={enteredDescrption} placeholder="Your description" />
               <button type="submit" onSubmit={addNewPostHandler}>
                 Add
               </button>

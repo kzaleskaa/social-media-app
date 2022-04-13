@@ -12,6 +12,8 @@
 
 .links-list li a,
 .links-list li p {
+  width: 100%;
+  display: inline-block;
   letter-spacing: 1px;
   color: black;
   letter-spacing: 2px;

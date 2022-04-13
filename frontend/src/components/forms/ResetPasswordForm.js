@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
 import { changePassword } from "../../actions/passwordAction";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";

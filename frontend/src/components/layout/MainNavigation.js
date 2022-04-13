@@ -34,14 +34,6 @@ const MainNavigation = ({ logout, isAuthenticated }) => {
               Profile
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/auth/reset-password"
-              onClick={() => setShowUserOptions(false)}
-            >
-              Change Password
-            </NavLink>
-          </li>
           <li onClick={logoutHandler}>
             <p>Logout</p>
           </li>

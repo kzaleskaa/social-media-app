@@ -1,9 +1,7 @@
 /* FONT */
-
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 
 /* COLORS */
-
 :root {
   /* PRIMARY */
   --pale-violet: hsl(276, 100%, 81%);
@@ -25,7 +23,6 @@
 }
 
 /* RESET */
-
 * {
   margin: 0;
   padding: 0;
@@ -45,7 +42,6 @@ button {
 }
 
 /* STYLES */
-
 body {
   min-height: 100vh;
   font-family: "Rubik", sans-serif;
@@ -128,6 +124,7 @@ button:hover {
   font-size: 14px;
 }
 
+/* EXTRA */
 .separator {
   display: flex;
   grid-template-columns: 1fr auto 1fr;

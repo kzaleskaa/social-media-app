@@ -6,7 +6,7 @@ import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import classes from "./Posts.module.css";
 import Modal from "../modal/Modal";
 
-const Posts = () => {
+const Posts = (props) => {
   const [modalIsShow, setModalIsShown] = useState(false);
   const [like, setLike] = useState(false);
   const [showNumber, setShowNumber] = useState(0);
@@ -33,6 +33,10 @@ const Posts = () => {
     }
   };
 
+  const addComment = (e) => {
+    e.preventDefault();
+  };
+
   const loadPosts = async () => {
     const configuration = {
       headers: {
@@ -46,6 +50,7 @@ const Posts = () => {
         configuration
       );
       setPosts(response.data.posts);
+      props.updatePostNumber(response.data.posts.length);
     } catch (err) {
       alert(err);
     }
@@ -104,8 +109,14 @@ const Posts = () => {
                   }}
                 />
                 <p>{new Date(posts[showNumber].date).toLocaleDateString()}</p>
-                <form>
+                <form
+                  className={classes["comment-section"]}
+                  onSubmit={addComment}
+                >
                   <input type="text" placeholder="Add new comment" />
+                  <button type="submit" onSubmit={addComment}>
+                    Add
+                  </button>
                 </form>
               </div>
             </div>

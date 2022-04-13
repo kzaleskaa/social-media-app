@@ -1,7 +1,7 @@
 import NewPost from "../forms/NewPostForm";
 import classes from "./Information.module.css";
 
-const Information = () => {
+const Information = (props) => {
   return (
     <header className={classes.header}>
       <div className={classes.user}>
@@ -17,7 +17,7 @@ const Information = () => {
         <ul className={classes["profile-info"]}>
           <li>
             <div>
-              <span className={classes.number}>20</span>posts
+              <span className={classes.number}>{props.postsNumber}</span>posts
             </div>
           </li>
           <li>
