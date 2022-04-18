@@ -140,3 +140,23 @@ class ManageComments(APIView):
         except Exception as error:
             return Response({'error': 'Something went wrong when listing comments.'},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class ManageComment(APIView):
+    """Actions for the selected comment - based on id of comment."""
+
+    def delete(self, request, comment_id):
+        """Delete existing comment based on comment_id."""
+
+        try:
+            user = request.user
+            comment = Comment.objects.get(pk=comment_id)
+
+            if user == comment.user:
+                comment.delete()
+                return Response({'success': 'Post deleted successfully.'}, status=status.HTTP_200_OK)
+            else:
+                return Response({'error': 'User can not delete this comment.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as error:
+            return Response({'error': 'Something went wrong when deleting post.'}, status=status.HTTP_400_BAD_REQUEST)
