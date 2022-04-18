@@ -24,7 +24,7 @@ const NewPost = () => {
 
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/posts",
+        "http://127.0.0.1:8000/api/posts/",
         formData,
         configuration
       );
@@ -61,7 +61,11 @@ const NewPost = () => {
                 ref={enteredImage}
                 required
               />
-              <input type="text" ref={enteredDescrption} placeholder="Your description" />
+              <input
+                type="text"
+                ref={enteredDescrption}
+                placeholder="Your description"
+              />
               <button type="submit" onSubmit={addNewPostHandler}>
                 Add
               </button>
