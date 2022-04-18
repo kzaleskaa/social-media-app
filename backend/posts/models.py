@@ -11,6 +11,9 @@ class Post(models.Model):
     description = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.user}, {self.date}"
+
 
 class Comment(models.Model):
     """Class represents comment in database."""

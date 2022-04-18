@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Post
-from .serializers import PostsSerializer
+from .models import Post, Comment
+from .serializers import PostsSerializer, CommentSerializer
 
 
 class ManagePostsViev(APIView):
@@ -55,7 +55,6 @@ class ManagePostsViev(APIView):
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-
 class ManagePostDetailViev(APIView):
     """Update or delete post."""
 
@@ -92,5 +91,52 @@ class ManagePostDetailViev(APIView):
             post = Post.objects.filter(pk=pk).delete()
 
             return Response({'success': 'Post deleted successfully.'}, status=status.HTTP_200_OK)
+
         except Exception as error:
             return Response({'error': 'Something went wrong when deleting post.'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ManageComments(APIView):
+    """Create/delete comments to post."""
+
+    def post(self, request, post_id):
+        """Create new comment to post."""
+
+        try:
+            user = request.user
+            data = request.data
+
+            comment_text = data["text"]
+
+            try:
+                post = Post.objects.get(pk=post_id)
+            except Exception as error:
+                return Response({'error': 'Post does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
+
+            Comment.objects.create(user=user, text=comment_text, post=post)
+
+            return Response({'success': 'New comment was successfully created.'},
+                            status=status.HTTP_201_CREATED)
+
+        except Exception as error:
+            return Response({'error': 'Something went wrong when adding post.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, post_id):
+        try:
+            user = request.user
+
+            try:
+                post = Post.objects.get(pk=post_id)
+            except Exception as error:
+                return Response({'error': 'Post does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
+
+            # sort comments
+            comments = Comment.objects.filter(post=post).order_by("-date")
+
+            comments = CommentSerializer(comments, many=True)
+
+            return Response({"comments": comments.data}, status=status.HTTP_200_OK)
+
+        except Exception as error:
+            return Response({'error': 'Something went wrong when listing comments.'},
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
