@@ -14,9 +14,7 @@ const ResetPasswordForm = ({ changePassword }) => {
     setEnteredEmail(e.target.value);
   };
 
-  const onSubmitEmailHandler = (e) => {
-    e.preventDefault();
-
+  const onSubmitEmailHandler = () => {
     changePassword(enteredEmail);
     navigate("/");
   };

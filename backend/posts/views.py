@@ -19,7 +19,7 @@ class ManagePostsViev(APIView):
                                 status=status.HTTP_403_FORBIDDEN)
 
             # sort user's post
-            posts = Post.objects.order_by("-date")
+            posts = Post.objects.filter(user=user).order_by("-date")
 
             posts = PostsSerializer(posts, many=True)
 

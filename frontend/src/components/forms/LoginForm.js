@@ -13,13 +13,10 @@ const Login = ({ login }) => {
   const { enteredEmail, enteredPassword } = enteredData;
 
   const onChangeHandler = (e) => {
-    const updatedData = { ...enteredData, [e.target.id]: e.target.value };
-
-    setEnteredData(updatedData);
+    setEnteredData({ ...enteredData, [e.target.id]: e.target.value });
   };
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  const onSubmitHandler = () => {
     login(enteredData.email, enteredData.password);
   };
 

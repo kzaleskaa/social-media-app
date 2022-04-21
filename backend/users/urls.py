@@ -1,7 +1,7 @@
 from django.urls import path
 
-from . import views
+from .views import CurrrentUser
 
 urlpatterns = [
-    path('auth/', views.index),
+    path('me/', CurrrentUser.as_view()),
 ]

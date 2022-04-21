@@ -10,6 +10,7 @@ const SignUp = ({ signUpNewUser }) => {
     email: "",
     first_name: "",
     last_name: "",
+    nickname: "",
     password1: "",
     password2: "",
   });
@@ -20,30 +21,29 @@ const SignUp = ({ signUpNewUser }) => {
     enteredEmail,
     enteredFirstName,
     enteredLastName,
+    enteredNickname,
     enteredPassword1,
     enteredPassword2,
   } = enteredData;
 
   const onChangeHandler = (e) => {
-    const updatedData = { ...enteredData, [e.target.id]: e.target.value };
-
-    setEnteredData(updatedData);
+    setEnteredData({ ...enteredData, [e.target.id]: e.target.value });
   };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
+    console.log(enteredData)
     if (enteredData.password1 === enteredData.password2) {
       signUpNewUser(
         enteredData.first_name,
         enteredData.last_name,
         enteredData.email,
+        enteredData.nickname,
         enteredData.password1,
         enteredData.password2
       );
       navigate("/auth/login");
     }
-    console.log(enteredData);
   };
 
   return (
@@ -75,6 +75,15 @@ const SignUp = ({ signUpNewUser }) => {
             placeholder="Last Name"
             type="text"
             value={enteredLastName}
+            onChange={onChangeHandler}
+            required
+          />
+          <input
+            id="nickname"
+            name="nickname"
+            placeholder="nickname"
+            type="text"
+            value={enteredNickname}
             onChange={onChangeHandler}
             required
           />

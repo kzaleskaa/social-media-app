@@ -17,10 +17,6 @@ const Posts = (props) => {
     setModalIsShown(true);
   };
 
-  const hideModalHandler = () => {
-    setModalIsShown(false);
-  };
-
   const changePostNextHandler = () => {
     if (showNumber + 1 < posts.length) {
       setShowNumber(showNumber + 1);
@@ -58,6 +54,7 @@ const Posts = (props) => {
 
   useEffect(() => {
     loadPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -81,7 +78,7 @@ const Posts = (props) => {
 
       {modalIsShow && (
         <Modal
-          onCloseModal={hideModalHandler}
+          onCloseModal={() => setModalIsShown(false)}
           changePostNextHandler={changePostNextHandler}
           changePostBackHandler={changePostBackHandler}
           typeOfModal="posts"

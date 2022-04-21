@@ -4,7 +4,6 @@ import { useNavigate, useMatch } from "react-router";
 import { confirmChangePassword } from "../../actions/passwordAction";
 import { connect } from "react-redux";
 
-// match to extract user's uid and token
 const ChangePasswordConfirmForm = ({ confirmChangePassword }) => {
   const [enteredData, setEnteredData] = useState({
     password: "",
@@ -22,17 +21,10 @@ const ChangePasswordConfirmForm = ({ confirmChangePassword }) => {
     setEnteredData(updatedData);
   };
 
-  const onSubmitPasswordHandler = (e) => {
-    e.preventDefault();
-
-    const uid = match.params.uid;
-    const token = match.params.token;
-
-    console.log(uid, token, enteredData.password, enteredData.re_password);
-
+  const onSubmitPasswordHandler = () => {
     confirmChangePassword(
-      uid,
-      token,
+      match.params.uid,
+      match.params.token,
       enteredData.password,
       enteredData.re_password
     );

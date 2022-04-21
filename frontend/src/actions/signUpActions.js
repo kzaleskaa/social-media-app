@@ -8,7 +8,7 @@ import {
 import axios from "axios";
 
 export const signUpNewUser =
-  (first_name, last_name, email, password, re_password) => async (dispatch) => {
+  (first_name, last_name, email, nickname, password, re_password) => async (dispatch) => {
     const configuration = {
       headers: {
         "Content-Type": "application/json",
@@ -18,6 +18,7 @@ export const signUpNewUser =
     const body = JSON.stringify({
       first_name,
       last_name,
+      nickname,
       email,
       password,
       re_password,
