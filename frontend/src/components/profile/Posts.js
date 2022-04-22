@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import classes from "./Posts.module.css";
 import Modal from "../modal/Modal";
+import Comments from "./Comments";
 
 const Posts = (props) => {
   const [modalIsShow, setModalIsShown] = useState(false);
-  const [like, setLike] = useState(false);
   const [showNumber, setShowNumber] = useState(0);
   const [posts, setPosts] = useState([]);
 
@@ -27,10 +24,6 @@ const Posts = (props) => {
     if (showNumber - 1 >= 0) {
       setShowNumber(showNumber - 1);
     }
-  };
-
-  const addComment = (e) => {
-    e.preventDefault();
   };
 
   const loadPosts = async () => {
@@ -84,39 +77,13 @@ const Posts = (props) => {
           typeOfModal="posts"
         >
           <div className={classes.container}>
-            <div
-              className={classes.photo}
-              onDoubleClick={() => {
-                setLike((prev) => !prev);
-              }}
-            >
+            <div className={classes.photo}>
               <img
-                src={`http://127.0.0.1:8000${posts[showNumber].image}`}
+                src={`${process.env.REACT_APP_BACKEND}${posts[showNumber].image}`}
                 alt="post"
               />
             </div>
-            <div className={classes.info}>
-              <p>{posts[showNumber].description}</p>
-              <div className={classes.social}>
-                <FontAwesomeIcon
-                  icon={like ? faHeartSolid : faHeartRegular}
-                  color={like ? "#be0000" : "black"}
-                  onClick={() => {
-                    setLike((prev) => !prev);
-                  }}
-                />
-                <p>{new Date(posts[showNumber].date).toLocaleDateString()}</p>
-                <form
-                  className={classes["comment-section"]}
-                  onSubmit={addComment}
-                >
-                  <input type="text" placeholder="Add new comment" />
-                  <button type="submit" onSubmit={addComment}>
-                    Add
-                  </button>
-                </form>
-              </div>
-            </div>
+            <Comments post={posts[showNumber]} />
           </div>
         </Modal>
       )}
