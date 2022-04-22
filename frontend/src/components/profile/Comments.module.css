@@ -1,3 +1,18 @@
+#comments {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+#comments .comment {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid var(--very-dark-desaturated-violet);
+}
+
 .info {
   display: flex;
   flex-direction: column;
