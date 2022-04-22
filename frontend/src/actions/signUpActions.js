@@ -8,7 +8,8 @@ import {
 import axios from "axios";
 
 export const signUpNewUser =
-  (first_name, last_name, email, nickname, password, re_password) => async (dispatch) => {
+  (first_name, last_name, email, nickname, password, re_password) =>
+  async (dispatch) => {
     const configuration = {
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +27,7 @@ export const signUpNewUser =
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/auth/users/",
+        `${process.env.REACT_APP_BACKEND}/auth/users/`,
         body,
         configuration
       );
@@ -37,27 +38,27 @@ export const signUpNewUser =
     }
   };
 
-export const verifyNewUser =
-  (uid, token) => async (dispatch) => {
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    const body = JSON.stringify({
-      uid, token
-    });
-
-    try {
-      await axios.post(
-        "http://127.0.0.1:8000/auth/users/activation/",
-        body,
-        configuration
-      );
-
-      dispatch({ type: ACTIVATION_SUCCESS });
-    } catch (err) {
-      dispatch({ type: ACTIVATION_FAIL });
-    }
+export const verifyNewUser = (uid, token) => async (dispatch) => {
+  const configuration = {
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
+
+  const body = JSON.stringify({
+    uid,
+    token,
+  });
+
+  try {
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND}/auth/users/activation/`,
+      body,
+      configuration
+    );
+
+    dispatch({ type: ACTIVATION_SUCCESS });
+  } catch (err) {
+    dispatch({ type: ACTIVATION_FAIL });
+  }
+};

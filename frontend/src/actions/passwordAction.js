@@ -19,7 +19,7 @@ export const changePassword = (email) => async (dispatch) => {
 
   try {
     await axios.post(
-      "http://127.0.0.1:8000/auth/users/reset_password/",
+      `${process.env.REACT_APP_BACKEND}/auth/users/reset_password/`,
       body,
       configuration
     );
@@ -42,7 +42,7 @@ export const confirmChangePassword = (uid, token, new_password, re_new_password)
   
     try {
       await axios.post(
-        "http://127.0.0.1:8000/auth/users/reset_password_confirm/",
+        `${process.env.REACT_APP_BACKEND}/auth/users/reset_password_confirm/`,
         body,
         configuration
       );

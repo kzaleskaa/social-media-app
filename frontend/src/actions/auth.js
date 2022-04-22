@@ -1,7 +1,4 @@
-import {
-  AUTHENTICATED_FAIL,
-  AUTHENTICATED_SUCCESS,
-} from "../types/types";
+import { AUTHENTICATED_FAIL, AUTHENTICATED_SUCCESS } from "../types/types";
 
 import axios from "axios";
 
@@ -17,7 +14,7 @@ export const checkAuthentication = () => async (dispatch) => {
     const data = JSON.stringify({ token: localStorage.getItem("access") });
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/auth/jwt/verify/",
+        `${process.env.REACT_APP_BACKEND}/auth/jwt/verify/`,
         data,
         configuration
       );

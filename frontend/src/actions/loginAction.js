@@ -19,7 +19,7 @@ export const loadUser = () => async (dispatch) => {
 
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/auth/users/me/",
+        `${process.env.REACT_APP_BACKEND}/auth/users/me/`,
         configuration
       );
 
@@ -43,7 +43,7 @@ export const login = (email, password) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      "http://127.0.0.1:8000/auth/jwt/create/",
+      `${process.env.REACT_APP_BACKEND}/auth/jwt/create/`,
       body,
       configuration
     );

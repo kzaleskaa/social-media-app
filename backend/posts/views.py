@@ -14,10 +14,6 @@ class ManagePostsViev(APIView):
         try:
             user = request.user
 
-            if not user.is_active:
-                return Response({'error': 'User does not have necessary permission to see posts.'},
-                                status=status.HTTP_403_FORBIDDEN)
-
             # sort user's post
             posts = Post.objects.filter(user=user).order_by("-date")
 
@@ -34,10 +30,6 @@ class ManagePostsViev(APIView):
 
         try:
             user = request.user
-
-            if not user.is_active:
-                return Response({'error': 'User does not have necessary permission to create new post.'},
-                                status=status.HTTP_403_FORBIDDEN)
 
             data = request.data
 
@@ -64,10 +56,6 @@ class ManagePostDetailViev(APIView):
         try:
             user = request.user
 
-            if not user.is_active:
-                return Response({'error': 'User does not have necessary permission to update post.'},
-                                status=status.HTTP_403_FORBIDDEN)
-
             data = request.data
             description = data["description"]
 
@@ -83,10 +71,6 @@ class ManagePostDetailViev(APIView):
 
         try:
             user = request.user
-
-            if not user.is_active:
-                return Response({'error': 'User does not have necessary permission to update post.'},
-                                status=status.HTTP_403_FORBIDDEN)
 
             post = Post.objects.filter(pk=pk).delete()
 
