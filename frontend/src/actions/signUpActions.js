@@ -3,6 +3,7 @@ import {
   SIGNUP_FAIL,
   ACTIVATION_SUCCESS,
   ACTIVATION_FAIL,
+  GET_ERROR,
 } from "../types/types";
 
 import axios from "axios";
@@ -34,6 +35,9 @@ export const signUpNewUser =
 
       dispatch({ type: SIGNUP_SUCCESS, payload: response.data });
     } catch (err) {
+      const error = { msg: err.response.data, status: err.response.status };
+
+      dispatch({ type: GET_ERROR, payload: error });
       dispatch({ type: SIGNUP_FAIL });
     }
   };

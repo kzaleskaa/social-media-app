@@ -2,11 +2,7 @@ import { connect } from "react-redux";
 import NewPost from "../forms/NewPostForm";
 import classes from "./Information.module.css";
 
-const Information = ({ user }) => {
-  if (!user) {
-    return <h3>User logout!</h3>;
-  }
-  
+const Information = (props) => {
   return (
     <header className={classes.header}>
       <div className={classes.user}>
@@ -14,8 +10,8 @@ const Information = ({ user }) => {
           <img src="./photo.jpg" alt="user" />
         </div>
         <div>
-          <h3>@{user.nickname}</h3>
-          <h4>{`${user.first_name} ${user.last_name}`}</h4>
+          <h3>@{props.user.nickname}</h3>
+          <h4>{`${props.user.first_name} ${props.user.last_name}`}</h4>
         </div>
       </div>
       <div className={classes["info-container"]}>

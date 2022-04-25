@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router";
 import { connect } from "react-redux";
 
 import { logout } from "../../actions/logoutAction";
@@ -9,15 +8,6 @@ import classes from "./MainNavigation.module.css";
 
 const MainNavigation = ({ logout, isAuthenticated }) => {
   const [showUserOptions, setShowUserOptions] = useState(false);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/auth/login");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated]);
 
   const logoutHandler = (e) => {
     e.preventDefault();
@@ -30,7 +20,10 @@ const MainNavigation = ({ logout, isAuthenticated }) => {
       <div className={classes.options}>
         <ul>
           <li>
-            <NavLink to="/profile" onClick={() => setShowUserOptions(false)}>
+            <NavLink
+              to="/profile/kzaleska"
+              onClick={() => setShowUserOptions(false)}
+            >
               Profile
             </NavLink>
           </li>

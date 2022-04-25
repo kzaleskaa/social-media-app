@@ -3,6 +3,7 @@ import {
   LOGIN_FAIL,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  GET_ERROR,
 } from "../types/types";
 
 import axios from "axios";
@@ -25,7 +26,10 @@ export const loadUser = () => async (dispatch) => {
 
       dispatch({ type: LOAD_USER_SUCCESS, payload: response.data });
     } catch (err) {
+      const error = { msg: err.response.data, status: err.response.status };
+
       dispatch({ type: LOAD_USER_FAIL });
+      dispatch({ type: GET_ERROR, payload: error });
     }
   } else {
     dispatch({ type: LOAD_USER_FAIL });
@@ -52,6 +56,9 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch(loadUser());
   } catch (err) {
+    const error = { msg: err.response.data, status: err.response.status };
+
+    dispatch({ type: GET_ERROR, payload: error });
     dispatch({ type: LOGIN_FAIL });
   }
 };

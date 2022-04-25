@@ -46,8 +46,8 @@ const App = () => {
             />
           </Route>
           <Route path="/" element={<Layout />}>
-            <Route path="" element={<Home />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/profile/:user" element={<Profile />} />
           </Route>
         </Routes>
       </Suspense>
