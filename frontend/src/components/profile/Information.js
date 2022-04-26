@@ -1,7 +1,33 @@
+import { useState } from "react";
+
 import NewPost from "../forms/NewPostForm";
 import classes from "./Information.module.css";
 
 const Information = (props) => {
+  const [follow, setFollow] = useState(true);
+
+  const addNewPost = (
+    <div className={classes["new-post"]}>
+      <NewPost />
+    </div>
+  );
+
+  const followUserHandler = (e) => {
+    e.preventDefault();
+    setFollow((prev) => !prev);
+  };
+
+  const followNewUser = (
+    <div>
+      <button
+        className={`btn-submit ${follow && "btn-gray"}`}
+        onClick={followUserHandler}
+      >
+        {follow ? "Unfollow" : "Follow"}
+      </button>
+    </div>
+  );
+
   return (
     <header className={classes.header}>
       <div className={classes.user}>
@@ -33,9 +59,7 @@ const Information = (props) => {
           </li>
         </ul>
       </div>
-      <div className={classes["new-post"]}>
-        <NewPost />
-      </div>
+      {props.profile ? addNewPost : followNewUser}
     </header>
   );
 };

@@ -1,19 +1,18 @@
 import { Route, Routes } from "react-router";
 import React, { Suspense } from "react";
-import { checkAuthentication } from "./actions/checkAuthenticationAction";
-import { loadUser } from "./actions/loginAction";
 
 import * as Loader from "react-loader-spinner";
 
-import { connect } from "react-redux";
 import Layout from "./components/layout/Layout";
 import MainLayout from "./components/layout/MainLayout";
 import LoginLayout from "./components/layout/LoginLayout";
 
 const Home = React.lazy(() => import("./pages/Home"));
+const Profile = React.lazy(() => import("./pages/Profile"));
+
 const SignUp = React.lazy(() => import("./pages/Signup"));
 const Login = React.lazy(() => import("./pages/Login"));
-const Profile = React.lazy(() => import("./pages/Profile"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 const ChangePassword = React.lazy(() => import("./pages/ChangePassword"));
 const ChangePasswordConfirm = React.lazy(() =>
   import("./pages/ChangePasswordConfirm")
@@ -49,10 +48,11 @@ const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/profile/:user" element={<Profile />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </MainLayout>
   );
 };
 
-export default connect(null, { checkAuthentication, loadUser })(App);
+export default App;
