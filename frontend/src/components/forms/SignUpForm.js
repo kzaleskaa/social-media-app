@@ -2,10 +2,13 @@ import { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signUpNewUser } from "../../actions/signUpActions";
 
-const SignUp = ({ signUpNewUser }) => {
+const SignUp = () => {
+  const dispatch = useDispatch();
+  const errorMsg = useSelector((state) => state.error.msg);
+
   const [enteredData, setEnteredData] = useState({
     email: "",
     first_name: "",
@@ -32,24 +35,39 @@ const SignUp = ({ signUpNewUser }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(enteredData)
+
     if (enteredData.password1 === enteredData.password2) {
-      signUpNewUser(
-        enteredData.first_name,
-        enteredData.last_name,
-        enteredData.email,
-        enteredData.nickname,
-        enteredData.password1,
-        enteredData.password2
+      dispatch(
+        signUpNewUser(
+          enteredData.first_name,
+          enteredData.last_name,
+          enteredData.email,
+          enteredData.nickname,
+          enteredData.password1,
+          enteredData.password2
+        )
       );
-      navigate("/auth/login");
     }
+  };
+
+  const getErrorMsg = () => {
+    let errors = [];
+    
+    for (let i in errorMsg) {
+      errors.push(errorMsg[i][0]);
+    }
+
+    return errors;
   };
 
   return (
     <>
       <div className="form-wrapper">
         <h1>Sign Up</h1>
+
+        {errorMsg &&
+          getErrorMsg().map((item, index) => <p key={index}>{item}</p>)}
+
         <form className="form" onSubmit={onSubmitHandler}>
           <input
             id="email"
@@ -122,4 +140,4 @@ const SignUp = ({ signUpNewUser }) => {
   );
 };
 
-export default connect(null, { signUpNewUser })(SignUp);
+export default SignUp;

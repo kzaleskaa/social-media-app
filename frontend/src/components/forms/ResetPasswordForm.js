@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { changePassword } from "../../actions/passwordAction";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-const ResetPasswordForm = ({ changePassword }) => {
+const ResetPasswordForm = () => {
+  const dispatch = useDispatch();
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ const ResetPasswordForm = ({ changePassword }) => {
   };
 
   const onSubmitEmailHandler = () => {
-    changePassword(enteredEmail);
+    dispatch(changePassword(enteredEmail));
     navigate("/");
   };
 
@@ -55,4 +57,4 @@ const ResetPasswordForm = ({ changePassword }) => {
   );
 };
 
-export default connect(null, { changePassword })(ResetPasswordForm);
+export default ResetPasswordForm;

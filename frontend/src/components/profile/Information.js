@@ -1,4 +1,3 @@
-import { connect } from "react-redux";
 import NewPost from "../forms/NewPostForm";
 import classes from "./Information.module.css";
 
@@ -41,8 +40,4 @@ const Information = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-});
-
-export default connect(mapStateToProps)(Information);
+export default Information;

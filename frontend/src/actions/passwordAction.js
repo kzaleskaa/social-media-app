@@ -8,7 +8,6 @@ import {
 
 import axios from "axios";
 
-// send email to user with password reset link
 export const changePassword = (email) => async (dispatch) => {
   const configuration = {
     headers: {

@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate, useMatch } from "react-router";
 
 import { confirmChangePassword } from "../../actions/passwordAction";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const ChangePasswordConfirmForm = ({ confirmChangePassword }) => {
+const ChangePasswordConfirmForm = () => {
+  const dispatch = useDispatch();
+
   const [enteredData, setEnteredData] = useState({
     password: "",
     re_password: "",
@@ -22,11 +24,13 @@ const ChangePasswordConfirmForm = ({ confirmChangePassword }) => {
   };
 
   const onSubmitPasswordHandler = () => {
-    confirmChangePassword(
-      match.params.uid,
-      match.params.token,
-      enteredData.password,
-      enteredData.re_password
+    dispatch(
+      confirmChangePassword(
+        match.params.uid,
+        match.params.token,
+        enteredData.password,
+        enteredData.re_password
+      )
     );
     navigate("/");
   };
@@ -59,6 +63,4 @@ const ChangePasswordConfirmForm = ({ confirmChangePassword }) => {
   );
 };
 
-export default connect(null, { confirmChangePassword })(
-  ChangePasswordConfirmForm
-);
+export default ChangePasswordConfirmForm;

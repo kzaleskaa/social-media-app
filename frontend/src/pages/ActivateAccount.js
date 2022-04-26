@@ -1,10 +1,12 @@
 import { verifyNewUser } from "../actions/signUpActions";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useMatch } from "react-router";
 import { useEffect } from "react";
 
-const ActivateAccount = ({ verifyNewUser }) => {
+const ActivateAccount = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   let match = useMatch("/auth/activate/:uid/:token");
 
   const visitHomePage = (e) => {
@@ -13,7 +15,7 @@ const ActivateAccount = ({ verifyNewUser }) => {
   };
 
   useEffect(() => {
-    verifyNewUser(match.params.uid, match.params.token);
+    dispatch(verifyNewUser(match.params.uid, match.params.token));
   }, []);
 
   return (
@@ -27,4 +29,4 @@ const ActivateAccount = ({ verifyNewUser }) => {
   );
 };
 
-export default connect(null, { verifyNewUser })(ActivateAccount);
+export default ActivateAccount;

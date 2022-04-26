@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useMatch } from "react-router";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import Information from "../components/profile/Information";
 import Posts from "../components/profile/Posts";
 
-const Profile = ({ user }) => {
+const Profile = () => {
+  const user = useSelector((state) => state.auth.user);
+
   const [postsNumber, setPostsNumber] = useState(0);
   const [profile, setProfile] = useState(false);
 
@@ -33,8 +35,4 @@ const Profile = ({ user }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-});
-
-export default connect(mapStateToProps)(Profile);
+export default Profile;

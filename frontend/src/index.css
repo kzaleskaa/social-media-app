@@ -137,3 +137,7 @@ button:hover {
   height: 1px;
   background-color: var(--grayish-blue);
 }
+
+p::first-letter {
+  text-transform: capitalize;
+}

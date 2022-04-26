@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 
 import { login } from "../../actions/loginAction";
 
-const Login = ({ login }) => {
+const Login = () => {
+  const dispatch = useDispatch();
+
   const [enteredData, setEnteredData] = useState({ email: "", password: "" });
 
   const { enteredEmail, enteredPassword } = enteredData;
@@ -17,7 +19,7 @@ const Login = ({ login }) => {
   };
 
   const onSubmitHandler = () => {
-    login(enteredData.email, enteredData.password);
+    dispatch(login(enteredData.email, enteredData.password));
   };
 
   return (
@@ -81,4 +83,4 @@ const Login = ({ login }) => {
   );
 };
 
-export default connect(null, { login })(Login);
+export default Login;

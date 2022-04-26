@@ -56,9 +56,6 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch(loadUser());
   } catch (err) {
-    const error = { msg: err.response.data, status: err.response.status };
-
-    dispatch({ type: GET_ERROR, payload: error });
     dispatch({ type: LOGIN_FAIL });
   }
 };

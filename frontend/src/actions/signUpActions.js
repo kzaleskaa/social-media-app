@@ -35,7 +35,10 @@ export const signUpNewUser =
 
       dispatch({ type: SIGNUP_SUCCESS, payload: response.data });
     } catch (err) {
-      const error = { msg: err.response.data, status: err.response.status };
+      const error = {
+        msg: err.response.data,
+        status: err.response.status,
+      };
 
       dispatch({ type: GET_ERROR, payload: error });
       dispatch({ type: SIGNUP_FAIL });

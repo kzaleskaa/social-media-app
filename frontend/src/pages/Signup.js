@@ -4,13 +4,12 @@ import { useNavigate } from "react-router";
 
 import { useEffect } from "react";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { checkAuthentication } from "../actions/checkAuthenticationAction";
-import { loadUser } from "../actions/loginAction";
-
-const Signup = ({ isAuthenticated }) => {
+const Signup = () => {
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/");
@@ -20,10 +19,4 @@ const Signup = ({ isAuthenticated }) => {
   return <SignUpForm />;
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps, { checkAuthentication, loadUser })(
-  Signup
-);
+export default Signup;
