@@ -22,3 +22,11 @@ class Comment(models.Model):
     date = models.DateField(auto_now=True)
     text = models.TextField(validators=[MinLengthValidator(1)])
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+
+class Like(models.Model):
+    """Class represents likes of user posts."""
+
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=False)
+

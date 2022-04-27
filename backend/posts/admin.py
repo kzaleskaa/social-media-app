@@ -1,5 +1,5 @@
 from django.contrib import admin
-from posts.models import Post, Comment
+from posts.models import Post, Comment, Like
 
 # Register models
 
@@ -14,3 +14,5 @@ class PostAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'date')
     list_filter = ('user', 'date')
+
+admin.site.register(Like)

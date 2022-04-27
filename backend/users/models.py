@@ -48,3 +48,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+class Follower(models.Model):
+    """Class represents the relationship between users. """
+
+    follower_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name="follower")
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name="user")

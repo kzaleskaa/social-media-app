@@ -18,7 +18,8 @@ const Login = () => {
     setEnteredData({ ...enteredData, [e.target.id]: e.target.value });
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
     dispatch(login(enteredData.email, enteredData.password));
   };
 

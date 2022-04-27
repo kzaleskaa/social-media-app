@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { logout } from "../../actions/logoutAction";
 
 import classes from "./MainNavigation.module.css";
 
-const MainNavigation = ({ logout, isAuthenticated }) => {
+const MainNavigation = () => {
   const [showUserOptions, setShowUserOptions] = useState(false);
+  const dispatch = useDispatch();
 
   const logoutHandler = (e) => {
     e.preventDefault();
 
-    logout();
+    dispatch(logout());
   };
 
   const userOptions = () => {
@@ -59,8 +60,4 @@ const MainNavigation = ({ logout, isAuthenticated }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps, { logout })(MainNavigation);
+export default MainNavigation;
