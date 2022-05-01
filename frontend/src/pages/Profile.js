@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMatch } from "react-router";
 import { useSelector } from "react-redux";
+
 import Information from "../components/profile/Information";
 import Posts from "../components/profile/Posts";
 

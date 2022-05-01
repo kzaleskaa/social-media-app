@@ -15,4 +15,6 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('user', 'date')
     list_filter = ('user', 'date')
 
+
 admin.site.register(Like)
+

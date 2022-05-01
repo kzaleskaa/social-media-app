@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../../actions/logoutAction";
 
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
   const [showUserOptions, setShowUserOptions] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   const logoutHandler = (e) => {
     e.preventDefault();
-
+    navigate("auth/login");
     dispatch(logout());
   };
 
@@ -22,7 +24,7 @@ const MainNavigation = () => {
         <ul>
           <li>
             <NavLink
-              to="/profile/kzaleska"
+              to={`/profile/${user.nickname}`}
               onClick={() => setShowUserOptions(false)}
             >
               Profile
