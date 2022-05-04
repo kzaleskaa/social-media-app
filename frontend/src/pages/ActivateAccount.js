@@ -21,7 +21,7 @@ const ActivateAccount = () => {
   return (
     <>
       <h2>Your account was successfully activated!</h2>
-      <h4>Click the button to log in.</h4>
+      <h4>Click the button to visit home page.</h4>
       <button type="button" className="btn-submit" onClick={visitHomePage}>
         Log In
       </button>

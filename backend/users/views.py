@@ -16,3 +16,15 @@ class CurrrentUser(APIView):
         serialized = UserSerializer(user)
 
         return Response(serialized.data)
+
+
+class UserByNickname(APIView):
+    def get(self, request, nickname):
+        try:
+            user = User.objects.get(nickname=nickname)
+
+            serialized = UserSerializer(user)
+
+            return Response({'user': serialized.data}, status=status.HTTP_200_OK)
+        except Exception as error:
+            return Response({'error': 'User with this nickname does not exist.'}, status=status.HTTP_400_BAD_REQUEST)

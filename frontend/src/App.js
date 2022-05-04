@@ -45,8 +45,8 @@ const App = () => {
             />
           </Route>
           <Route path="/" element={<Layout />}>
-            <Route path="/home" element={<Home />} />
             <Route path="/profile/:user" element={<Profile />} />
+            <Route path="/home" element={<Home />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,37 +1,58 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useState, useCallback } from "react";
 import { useMatch } from "react-router";
-import { useSelector } from "react-redux";
 
 import Information from "../components/profile/Information";
 import Posts from "../components/profile/Posts";
 
 const Profile = () => {
-  const user = useSelector((state) => state.auth.user);
+  const [user, setUser] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const [postsNumber, setPostsNumber] = useState(0);
-  const [profile, setProfile] = useState(false);
 
   let match = useMatch("profile/:nick");
 
   const nickname = match.params.nick;
 
-  useEffect(() => {
-    setProfile(user && user.nickname === nickname);
-  }, [user, nickname]);
+  const loadUser = useCallback(async () => {
+    setIsLoading(true);
+    setError("");
 
-  if (!user) {
-    return <h3>User logout!</h3>;
+    const configuration = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem("access")}`,
+      },
+    };
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/profile/${nickname}`,
+        configuration
+      );
+      setUser(response.data.user);
+    } catch (err) {
+      console.log(err.message);
+      setError("User not found!");
+    }
+    setIsLoading(false);
+  }, [nickname]);
+
+  useEffect(() => {
+    loadUser();
+  }, [loadUser]);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  } else if (error) {
+    return <p>Not found</p>;
   }
 
   return (
     <>
-      <Information
-        postsNumber={postsNumber}
-        nickname={nickname}
-        user={user}
-        profile={profile}
-      />
-      <Posts updatePostNumber={setPostsNumber} profile={profile} />
+      <Information postsNumber={postsNumber} nickname={nickname} user={user} />
+      <Posts updatePostNumber={setPostsNumber} />
     </>
   );
 };

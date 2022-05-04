@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,14 +8,22 @@ import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
   const [showUserOptions, setShowUserOptions] = useState(false);
+  const inputRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
 
   const logoutHandler = (e) => {
     e.preventDefault();
-    navigate("auth/login");
+    navigate("/auth/login");
     dispatch(logout());
+  };
+
+  const searchUser = (e) => {
+    e.preventDefault();
+    const nick = inputRef.current.value;
+    inputRef.current.value = "";
+    navigate(`profile/${nick}`);
   };
 
   const userOptions = () => {
@@ -46,6 +54,9 @@ const MainNavigation = () => {
             Home
           </NavLink>
         </li>
+        <form onSubmit={searchUser}>
+          <input type="text" ref={inputRef} />
+        </form>
         <li>
           <div className={classes["user-options"]}>
             <div

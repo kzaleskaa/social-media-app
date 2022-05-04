@@ -8,14 +8,12 @@ const LoginLayout = () => {
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/home");
-    } else {
-      navigate("/auth/login");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     navigate("/home");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isAuthenticated]);
 
   return (
     <div className={classes["page-content"]}>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpNewUser } from "../../actions/signUpActions";
 
@@ -17,8 +16,6 @@ const SignUp = () => {
     password1: "",
     password2: "",
   });
-
-  const navigate = useNavigate();
 
   const {
     enteredEmail,

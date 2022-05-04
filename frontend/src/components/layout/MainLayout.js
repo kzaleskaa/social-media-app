@@ -14,9 +14,10 @@ const MainLayout = (props) => {
     dispatch(checkAuthentication());
     dispatch(loadUser());
 
-    if (!isAuthenticated) {
-      navigate("/auth/login");
-    }
+    // if (!isAuthenticated) {
+    //   navigate("/auth/login");
+    // }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

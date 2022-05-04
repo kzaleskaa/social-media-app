@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import NewPost from "../forms/NewPostForm";
 import classes from "./Information.module.css";
 
 const Information = (props) => {
   const [follow, setFollow] = useState(true);
+  const currentUser = useSelector((state) => state.auth.user);
 
   const addNewPost = (
     <div className={classes["new-post"]}>
@@ -59,7 +61,9 @@ const Information = (props) => {
           </li>
         </ul>
       </div>
-      {props.profile ? addNewPost : followNewUser}
+      {props.user.nickname === currentUser.nickname
+        ? addNewPost
+        : followNewUser}
     </header>
   );
 };
