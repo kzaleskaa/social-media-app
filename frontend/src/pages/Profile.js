@@ -6,7 +6,7 @@ import Information from "../components/profile/Information";
 import Posts from "../components/profile/Posts";
 
 const Profile = () => {
-  const [user, setUser] = useState("");
+  const [data, setData] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -31,9 +31,8 @@ const Profile = () => {
         `http://127.0.0.1:8000/api/profile/${nickname}`,
         configuration
       );
-      setUser(response.data.user);
+      setData(response.data);
     } catch (err) {
-      console.log(err.message);
       setError("User not found!");
     }
     setIsLoading(false);
@@ -51,8 +50,12 @@ const Profile = () => {
 
   return (
     <>
-      <Information postsNumber={postsNumber} nickname={nickname} user={user} />
-      <Posts updatePostNumber={setPostsNumber} />
+      <Information
+        postsNumber={postsNumber}
+        nickname={nickname}
+        user={data.user}
+      />
+      <Posts updatePostNumber={setPostsNumber} posts={data.posts} />
     </>
   );
 };

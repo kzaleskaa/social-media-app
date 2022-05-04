@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+
 import classes from "./Posts.module.css";
 import Modal from "../modal/Modal";
 import Comments from "./Comments";
@@ -7,7 +7,10 @@ import Comments from "./Comments";
 const Posts = (props) => {
   const [modalIsShow, setModalIsShown] = useState(false);
   const [showNumber, setShowNumber] = useState(0);
-  const [posts, setPosts] = useState([]);
+
+  const posts = props.posts;
+
+  console.log(posts);
 
   const showModalHandler = (e) => {
     setShowNumber(Number(e.target.id));
@@ -26,32 +29,12 @@ const Posts = (props) => {
     }
   };
 
-  const loadPosts = async () => {
-    const configuration = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
-    try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/posts",
-        configuration
-      );
-      setPosts(response.data.posts);
-      props.updatePostNumber(response.data.posts.length);
-    } catch (err) {
-      alert(err);
+  const presentUserPosts = () => {
+    if (typeof posts === "string") {
+      return <p>{posts}</p>;
     }
-  };
 
-  useEffect(() => {
-    loadPosts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return (
-    <>
+    const postsCard = (
       <div className={classes["posts-container"]}>
         {posts.map((item, index) => (
           <div
@@ -68,7 +51,14 @@ const Posts = (props) => {
           </div>
         ))}
       </div>
+    );
 
+    return postsCard;
+  };
+
+  return (
+    <>
+      {presentUserPosts()}
       {modalIsShow && (
         <Modal
           onCloseModal={() => setModalIsShown(false)}
