@@ -6,7 +6,7 @@ from users.models import User, Follower
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['id', 'full_name', 'nickname', 'email', 'last_login']
+    list_display = ['id', 'full_name', 'nickname', 'email', 'last_login', 'posts_number', 'followers', 'following']
     list_filter = ['is_staff', 'is_active']
     search_fields = ['email', 'nickname']
 

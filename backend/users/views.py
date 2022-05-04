@@ -29,7 +29,7 @@ class UserByNickname(APIView):
             posts = Post.objects.filter(user=user).order_by("-date")
 
             if not posts:
-                posts = "User do not have any posts."
+                posts = "User does not have any posts."
             else:
                 posts = PostsSerializer(posts, many=True)
                 posts = posts.data

@@ -6,24 +6,7 @@ from .serializers import PostsSerializer, CommentSerializer
 
 
 class ManagePostsViev(APIView):
-    """View to list all user's post or add new post."""
-
-    def get(self, request):
-        """Get all user's post ordered by date."""
-
-        try:
-            user = request.user
-
-            # sort user's post
-            posts = Post.objects.filter(user=user).order_by("-date")
-
-            posts = PostsSerializer(posts, many=True)
-
-            return Response({"posts": posts.data}, status=status.HTTP_200_OK)
-
-        except Exception as error:
-            return Response({'error': 'Something went wrong when listing posts.'},
-                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    """View to  add new post."""
 
     def post(self, request):
         """Create new post with user's image and description."""

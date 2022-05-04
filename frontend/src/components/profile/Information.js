@@ -34,7 +34,14 @@ const Information = (props) => {
     <header className={classes.header}>
       <div className={classes.user}>
         <div className={classes["photo-container"]}>
-          <img src="./photo.jpg" alt="user" />
+          {props.user.image ? (
+            <img
+              src={`${process.env.REACT_APP_BACKEND}${props.user.image}`}
+              alt="user"
+            />
+          ) : (
+            <img src="/avatar.png" alt="user" />
+          )}
         </div>
         <div>
           <h3>@{props.user.nickname}</h3>
@@ -45,18 +52,20 @@ const Information = (props) => {
         <ul className={classes["profile-info"]}>
           <li>
             <div>
-              <span className={classes.number}>1</span>
+              <span className={classes.number}>{props.user.posts_number}</span>
               posts
             </div>
           </li>
           <li>
             <div>
-              <span className={classes.number}>1mln</span>followers
+              <span className={classes.number}>{props.user.followers}</span>
+              followers
             </div>
           </li>
           <li>
             <div>
-              <span className={classes.number}>0</span>following
+              <span className={classes.number}>{props.user.following}</span>
+              following
             </div>
           </li>
         </ul>

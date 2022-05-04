@@ -10,8 +10,6 @@ const Posts = (props) => {
 
   const posts = props.posts;
 
-  console.log(posts);
-
   const showModalHandler = (e) => {
     setShowNumber(Number(e.target.id));
     setModalIsShown(true);
@@ -44,7 +42,7 @@ const Posts = (props) => {
             id={index}
           >
             <img
-              src={`http://127.0.0.1:8000${item.image}`}
+              src={`${process.env.REACT_APP_BACKEND}${item.image}`}
               alt="post"
               id={index}
             />

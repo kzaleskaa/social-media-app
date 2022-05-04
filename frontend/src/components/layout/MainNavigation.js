@@ -55,7 +55,11 @@ const MainNavigation = () => {
           </NavLink>
         </li>
         <form onSubmit={searchUser}>
-          <input type="text" ref={inputRef} />
+          <input
+            type="text"
+            ref={inputRef}
+            placeholder="Search user by nickname"
+          />
         </form>
         <li>
           <div className={classes["user-options"]}>
@@ -63,7 +67,7 @@ const MainNavigation = () => {
               className={classes.user}
               onClick={() => setShowUserOptions((prev) => !prev)}
             >
-              <img src="./photo.jpg" alt="user" />
+              <img src="/avatar.png" alt="profile" />
             </div>
             {showUserOptions && userOptions()}
           </div>

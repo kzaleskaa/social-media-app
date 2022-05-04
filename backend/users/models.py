@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from posts.models import Post
 
 
 class UserAccountManager(BaseUserManager):
@@ -34,6 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     nickname = models.CharField(max_length=255, unique=True, default=None)
+    image = models.ImageField(upload_to="user_images", null=True)
 
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -48,6 +50,24 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+    @property
+    def posts_number(self):
+        result = Post.objects.filter(user=self.pk)
+        counter = result.count()
+        return counter
+
+    @property
+    def followers(self):
+        result = Follower.objects.filter(user_id=self.pk)
+        counter = result.count()
+        return counter
+
+    @property
+    def following(self):
+        result = Follower.objects.filter(follower_id=self.pk)
+        counter = result.count()
+        return counter
 
 
 class Follower(models.Model):
