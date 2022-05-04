@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -5,7 +6,7 @@ import NewPost from "../forms/NewPostForm";
 import classes from "./Information.module.css";
 
 const Information = (props) => {
-  const [follow, setFollow] = useState(true);
+  const [follow, setFollow] = useState(props.follow);
   const currentUser = useSelector((state) => state.auth.user);
 
   const addNewPost = (
@@ -14,9 +15,36 @@ const Information = (props) => {
     </div>
   );
 
+  const updateRelation = async () => {
+    const configuration = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access")}`,
+      },
+    };
+    try {
+      if (follow) {
+        await axios.delete(
+          `http://127.0.0.1:8000/api/profile/followers/${props.user.pk}`,
+          configuration
+        );
+      } else {
+        await axios.post(
+          `http://127.0.0.1:8000/api/profile/followers/${props.user.pk}`,
+          null,
+          configuration
+        );
+      }
+      setFollow((prev) => !prev);
+      props.loadUser();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const followUserHandler = (e) => {
     e.preventDefault();
-    setFollow((prev) => !prev);
+    updateRelation();
   };
 
   const followNewUser = (

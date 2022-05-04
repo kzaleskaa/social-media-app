@@ -22,8 +22,9 @@ const Profile = () => {
 
     const configuration = {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("access")}`,
+        Accept: "application/json",
       },
     };
     try {
@@ -54,6 +55,8 @@ const Profile = () => {
         postsNumber={postsNumber}
         nickname={nickname}
         user={data.user}
+        follow={data.follow}
+        loadUser={loadUser}
       />
       <Posts updatePostNumber={setPostsNumber} posts={data.posts} />
     </>
