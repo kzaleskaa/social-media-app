@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 
 const Comments = (props) => {
   const [like, setLike] = useState(false);
+  const [likesNumber, setLikesNumber] = useState(0);
   const [comments, setComments] = useState([]);
   const currentUser = useSelector((state) => state.auth.user.nickname);
   const newEnteredComment = useRef("");
@@ -54,6 +55,8 @@ const Comments = (props) => {
       );
 
       setComments(result.data.comments);
+      setLikesNumber(result.data.likes_number);
+      setLike(result.data.like);
     } catch (err) {
       alert("Something went wrong! Try again!");
     }
@@ -78,10 +81,37 @@ const Comments = (props) => {
     getAllComments();
   };
 
+  const updateLike = async (post_id) => {
+    setLike((prev) => !prev);
+
+    const configuration = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("access")}`,
+      },
+    };
+    try {
+      if (like) {
+        await axios.delete(
+          `${process.env.REACT_APP_BACKEND}/api/posts/like/${post.id}`,
+          configuration
+        );
+      } else {
+        await axios.post(
+          `${process.env.REACT_APP_BACKEND}/api/posts/like/${post.id}`,
+          null,
+          configuration
+        );
+      }
+    } catch (err) {
+      alert("Something went wrong! Try again!");
+    }
+  };
+
   useEffect(() => {
     getAllComments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [post]);
+  }, [post, like]);
 
   return (
     <div className={classes.info}>
@@ -114,12 +144,11 @@ const Comments = (props) => {
         ))}
       </div>
       <div className={classes.social}>
+        {likesNumber} likes
         <FontAwesomeIcon
           icon={like ? faHeartSolid : faHeartRegular}
           color={like ? "#be0000" : "black"}
-          onClick={() => {
-            setLike((prev) => !prev);
-          }}
+          onClick={updateLike}
         />
         <p>{new Date(post.date).toLocaleDateString()}</p>
         <form className={classes["comment-section"]} onSubmit={addNewComment}>

@@ -6,7 +6,7 @@ from posts.models import Post, Comment, Like
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('user', 'date')
+    list_display = ('user', 'date', 'likes_number', 'comments_number')
     list_filter = ('user', 'date')
 
 

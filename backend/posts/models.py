@@ -1,5 +1,4 @@
 from django.db import models
-# from users.models import User
 from django.core.validators import MinLengthValidator
 
 
@@ -13,6 +12,18 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.user}, {self.date}"
+
+    @property
+    def likes_number(self):
+        result = Like.objects.filter(post=self.pk)
+        counter = result.count()
+        return counter
+
+    @property
+    def comments_number(self):
+        result = Comment.objects.filter(post=self.pk)
+        counter = result.count()
+        return counter
 
 
 class Comment(models.Model):
@@ -29,4 +40,3 @@ class Like(models.Model):
 
     user_id = models.ForeignKey("users.User", on_delete=models.CASCADE, null=False)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=False)
-

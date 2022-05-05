@@ -49,7 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return self.nickname
 
     @property
     def posts_number(self):

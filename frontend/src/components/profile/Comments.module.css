@@ -15,6 +15,11 @@
   border: 1px solid var(--very-dark-desaturated-violet);
 }
 
+#comments .comment div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+
 #comments button {
   background-color: transparent;
   width: 20px;

@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Post, Comment
+from .models import Post, Comment, Like
 from .serializers import PostsSerializer, CommentSerializer
 
 
@@ -55,7 +55,7 @@ class ManagePostDetailViev(APIView):
         try:
             user = request.user
 
-            post = Post.objects.filter(pk=pk).delete()
+            Post.objects.filter(pk=pk).delete()
 
             return Response({'success': 'Post deleted successfully.'}, status=status.HTTP_200_OK)
 
@@ -102,7 +102,11 @@ class ManageComments(APIView):
 
             comments = CommentSerializer(comments, many=True)
 
-            return Response({"comments": comments.data}, status=status.HTTP_200_OK)
+            likes_number = Like.objects.filter(post=post_id).count()
+
+            liked_by_user = Like.objects.filter(user_id=user, post=post_id).count()
+
+            return Response({"comments": comments.data, "likes_number": likes_number, "like": bool(liked_by_user)}, status=status.HTTP_200_OK)
 
         except Exception as error:
             return Response({'error': 'Something went wrong when listing comments.'},
@@ -127,3 +131,29 @@ class ManageComment(APIView):
 
         except Exception as error:
             return Response({'error': 'Something went wrong when deleting comment.'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ManageLikes(APIView):
+    def post(self, request, post_id):
+        try:
+            user = request.user
+
+            post = Post.objects.get(pk=post_id)
+
+            Like.objects.create(user_id=user, post=post)
+
+            return Response({'success': 'New like was successfully added.'},
+                        status=status.HTTP_201_CREATED)
+
+        except Exception as error:
+            return Response({'error': 'Something went wrong when adding like.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, post_id):
+        try:
+            user = request.user
+
+            Like.objects.filter(user_id=user, post=post_id).delete()
+
+            return Response({'success': 'Like was successfully deleted.'}, status=status.HTTP_204_NO_CONTENT)
+        except Exception as error:
+            return Response({'error': 'Something went wrong when deleting like.'}, status=status.HTTP_400_BAD_REQUEST)
