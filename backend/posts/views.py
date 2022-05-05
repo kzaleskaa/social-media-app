@@ -121,9 +121,9 @@ class ManageComment(APIView):
 
             if user == comment.user:
                 comment.delete()
-                return Response({'success': 'Post deleted successfully.'}, status=status.HTTP_200_OK)
+                return Response({'success': 'Comment deleted successfully.'}, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'User can not delete this comment.'}, status=status.HTTP_400_BAD_REQUEST)
 
         except Exception as error:
-            return Response({'error': 'Something went wrong when deleting post.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Something went wrong when deleting comment.'}, status=status.HTTP_400_BAD_REQUEST)
