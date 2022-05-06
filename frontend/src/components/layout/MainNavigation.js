@@ -15,8 +15,8 @@ const MainNavigation = () => {
 
   const logoutHandler = (e) => {
     e.preventDefault();
-    navigate("/auth/login");
     dispatch(logout());
+    navigate("/auth/login");
   };
 
   const searchUser = (e) => {
