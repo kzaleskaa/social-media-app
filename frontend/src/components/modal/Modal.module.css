@@ -1,0 +1,104 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  max-width: 500px;
+  transform: translate(0, 0);
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+}
+
+.content {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.modal-posts {
+  max-width: 800px;
+}
+
+.modal-posts button {
+  width: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: none;
+}
+
+.left-btn {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 0;
+  transform: translate(-120%, -50%);
+}
+
+.right-btn {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  right: 0;
+  transform: translate(120%, -50%);
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrow-right {
+  transform: rotate(-45deg);
+}
+
+.arrow-left {
+  transform: rotate(135deg);
+}
+
+.close {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 28px;
+  color: white;
+}
+
+.modal-posts div:first-of-type {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal-posts div:first-of-type {
+    display: flex;
+    flex-direction: row;
+  }
+}

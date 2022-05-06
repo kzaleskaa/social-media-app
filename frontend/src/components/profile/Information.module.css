@@ -1,0 +1,122 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "user" "post" "info";
+  text-align: center;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  grid-area: user;
+  line-height: 1.6;
+  padding: 10px 0px;
+}
+
+.photo-container {
+  width: 100px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 1px solid var(--grayish-blue);
+  overflow: hidden;
+}
+
+.photo-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.info-container {
+  grid-area: info;
+  margin: 10px 0px;
+  border-top: 1px solid var(--grayish-blue);
+  border-bottom: 1px solid var(--grayish-blue);
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+
+.profile-info li {
+  text-align: center;
+}
+
+.number {
+  display: block;
+  font-weight: 700;
+}
+
+.new-post {
+  grid-area: post;
+}
+
+.new-post button {
+  background-color: var(--very-dark-desaturated-violet);
+  border: 1px solid var(--very-dark-desaturated-violet);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0px;
+  transition: 0.4s;
+}
+
+.new-post button:hover {
+  background-color: white;
+  color: var(--very-dark-desaturated-violet);
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .header {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "user info" "user info" "post post";
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+    border-bottom: 1px solid var(--grayish-blue);
+    padding: 30px 0px;
+  }
+
+  .user {
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+  }
+
+  .info-container {
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .profile-info {
+    padding: 0;
+  }
+
+  .profile-info li {
+    text-align: left;
+  }
+
+  .profile-info span {
+    margin-right: 4px;
+  }
+
+  .profile-info li:not(:last-child) {
+    margin-right: 60px;
+  }
+
+  .number {
+    display: inline-block;
+  }
+
+  .new-post {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

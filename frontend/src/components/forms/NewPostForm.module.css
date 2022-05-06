@@ -1,0 +1,44 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 14px;
+}
+
+.modal h1 {
+  line-height: 1;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+  margin-top: 28px;
+}
+
+.modal form input {
+  height: 40px;
+}
+
+.modal form button {
+  background-color: var(--very-dark-desaturated-violet);
+  border: 1px solid var(--very-dark-desaturated-violet);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0px;
+  transition: 0.4s;
+}
+
+.modal form button:hover {
+  background-color: white;
+  color: var(--very-dark-desaturated-violet);
+  opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    padding: 30px 50px;
+  }
+}

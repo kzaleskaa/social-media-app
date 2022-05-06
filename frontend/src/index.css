@@ -1,0 +1,147 @@
+/* FONT */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
+/* COLORS */
+:root {
+  /* PRIMARY */
+  --pale-violet: hsl(276, 100%, 81%);
+  --moderate-violet: hsl(276, 55%, 52%);
+  --desaturated-dark-violet: hsl(271, 15%, 43%);
+  --grayish-blue: hsl(206, 6%, 79%);
+  --very-dark-desaturated-violet: hsl(271, 36%, 24%);
+  --dark-grayish-violet: hsl(270, 7%, 64%);
+
+  /* GRADIENT */
+  --light-magenta: hsl(293, 100%, 63%);
+  --light-violet: hsl(264, 100%, 61%);
+
+  /* SECONDARY */
+  --white: hsl(0, 0%, 100%);
+  --light-grayish-violet: hsl(270, 20%, 96%);
+  --very-dark-desaturated-violet: hsl(271, 36%, 24%);
+  --very-light-magenta: hsl(289, 100%, 72%);
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* STYLES */
+body {
+  min-height: 100vh;
+  font-family: "Rubik", sans-serif;
+  overflow-x: hidden;
+  background-color: var(--light-grayish-violet);
+}
+
+h1 {
+  color: var(--cyprus);
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 2;
+}
+
+input {
+  padding: 5px;
+}
+
+#root {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+/* FORM STYLES */
+.form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  row-gap: 10px;
+}
+
+.form-wrapper {
+  width: 100%;
+  padding: 22px;
+  border: 1px solid var(--grayish-blue);
+  box-shadow: 0px 0px 10px -4px rgba(66, 68, 90, 1);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: var(--white);
+}
+
+.form-wrapper p {
+  padding: 12px 0px;
+}
+
+.form-wrapper a {
+  line-height: 2;
+}
+
+.form-wrapper:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+/* BUTTONS */
+button {
+  font-family: "Rubik", sans-serif;
+}
+
+.btn-submit {
+  padding: 10px;
+  color: var(--white);
+  border: none;
+  background-color: var(--light-violet);
+  transition: 0.4s;
+}
+
+.btn-social {
+  font-weight: 500;
+  border: none;
+  background-color: transparent;
+}
+
+.btn-gray {
+  background-color: var(--grayish-blue);
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+.reset-password {
+  font-size: 14px;
+}
+
+/* EXTRA */
+.separator {
+  display: flex;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--grayish-blue);
+}
+
+p::first-letter {
+  text-transform: capitalize;
+}

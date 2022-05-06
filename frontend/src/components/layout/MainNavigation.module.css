@@ -1,0 +1,94 @@
+.navigation {
+  border-bottom: 1px solid var(--grayish-blue);
+}
+
+.links-list {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links-list li a,
+.links-list li p {
+  width: 100%;
+  display: inline-block;
+  letter-spacing: 1px;
+  color: black;
+  letter-spacing: 2px;
+  transition: 0.7s;
+}
+
+.links-list li {
+  cursor: pointer;
+}
+
+.links-list li a:hover,
+.links-list li p:hover {
+  color: var(--very-light-magenta);
+}
+
+.user-options {
+  position: relative;
+}
+
+.user {
+  width: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 1px solid var(--grayish-blue);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.options {
+  position: absolute;
+  width: 200px;
+  margin-top: 10px;
+  right: 0;
+  z-index: 100;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--grayish-blue);
+  background-color: var(--white);
+  z-index: 10;
+}
+
+.options::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 11px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid var(--white);
+}
+
+.options::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 11px solid var(--grayish-blue);
+  z-index: -2;
+}
+
+.options ul li {
+  margin: 8px 0px;
+}
+
+.options ul li a {
+  font-weight: 400;
+}
