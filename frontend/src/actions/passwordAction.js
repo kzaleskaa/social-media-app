@@ -7,19 +7,17 @@ import {
   GET_ERROR,
 } from "../types/types";
 
+const configuration = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
 export const changePassword = (email) => async (dispatch) => {
-  const configuration = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  const body = JSON.stringify({ email });
-
   try {
     await axios.post(
       `${process.env.REACT_APP_BACKEND}/auth/users/reset_password/`,
-      body,
+      JSON.stringify({ email }),
       configuration
     );
 
@@ -35,18 +33,10 @@ export const changePassword = (email) => async (dispatch) => {
 // finish reset password process
 export const confirmChangePassword =
   (uid, token, new_password, re_new_password) => async (dispatch) => {
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    const body = JSON.stringify({ uid, token, new_password, re_new_password });
-
     try {
       await axios.post(
         `${process.env.REACT_APP_BACKEND}/auth/users/reset_password_confirm/`,
-        body,
+        JSON.stringify({ uid, token, new_password, re_new_password }),
         configuration
       );
 

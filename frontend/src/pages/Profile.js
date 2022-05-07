@@ -1,46 +1,29 @@
-import axios from "axios";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useMatch } from "react-router";
 import Information from "../components/profile/Information";
 import Posts from "../components/profile/Posts";
+import useHttp from "../hooks/use-http";
 
 const Profile = () => {
   const [data, setData] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [postsNumber, setPostsNumber] = useState(0);
 
   let match = useMatch("profile/:nick");
-
   const nickname = match.params.nick;
 
-  const loadUser = useCallback(async () => {
-    setIsLoading(true);
-    setError("");
-
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-        Accept: "application/json",
-      },
-    };
-    try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/api/profile/${nickname}`,
-        configuration
-      );
-      setData(response.data);
-    } catch (err) {
-      setError("User not found!");
+  const httpData = useHttp(
+    {
+      url: `${process.env.REACT_APP_BACKEND}/api/profile/${nickname}`,
+    },
+    (response) => {
+      setData(response);
     }
-    setIsLoading(false);
-  }, [nickname]);
+  );
+
+  const { isLoading, error, sendRequest: loadUser } = httpData;
 
   useEffect(() => {
     loadUser();
-  }, [loadUser]);
+  }, [nickname]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -51,13 +34,12 @@ const Profile = () => {
   return (
     <>
       <Information
-        postsNumber={postsNumber}
         nickname={nickname}
         user={data.user}
         follow={data.follow}
         loadUser={loadUser}
       />
-      <Posts updatePostNumber={setPostsNumber} posts={data.posts} />
+      <Posts posts={data.posts} />
     </>
   );
 };

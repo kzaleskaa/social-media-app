@@ -16,22 +16,22 @@ const Comments = (props) => {
   const newEnteredComment = useRef("");
   const post = props.post;
 
+  const configuration = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("access")}`,
+    },
+  };
+
   const addNewComment = async (e) => {
     e.preventDefault();
 
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
     try {
       await axios.post(
         `http://127.0.0.1:8000/api/posts/comments/${post.id}`,
         JSON.stringify({ text: newEnteredComment.current.value }),
         configuration
       );
-
       getAllComments();
       newEnteredComment.current.value = "";
     } catch (err) {
@@ -40,12 +40,6 @@ const Comments = (props) => {
   };
 
   const getAllComments = async () => {
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
     try {
       const result = await axios.get(
         `${process.env.REACT_APP_BACKEND}/api/posts/comments/${post.id}`,
@@ -61,12 +55,6 @@ const Comments = (props) => {
   };
 
   const deleteComment = async (comment_id) => {
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
     try {
       await axios.delete(
         `${process.env.REACT_APP_BACKEND}/api/posts/comment/${comment_id}`,
@@ -75,19 +63,12 @@ const Comments = (props) => {
     } catch (err) {
       alert("Something went wrong! Try again!");
     }
-
     getAllComments();
   };
 
-  const updateLike = async (post_id) => {
+  const updateLike = async () => {
     setLike((prev) => !prev);
 
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
     try {
       if (like) {
         await axios.delete(

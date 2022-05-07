@@ -13,7 +13,7 @@ const useHttp = (
   applyData
 ) => {
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const sendRequest = async () => {
     setError(false);

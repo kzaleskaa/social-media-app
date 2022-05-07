@@ -42,12 +42,10 @@ export const login = (email, password) => async (dispatch) => {
     },
   };
 
-  const body = JSON.stringify({ email, password });
-
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_BACKEND}/auth/jwt/create/`,
-      body,
+      JSON.stringify({ email, password }),
       configuration
     );
 
