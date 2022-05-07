@@ -3,11 +3,13 @@
   flex-direction: column;
   margin: 0 auto;
   width: 50%;
+  min-width: 200px;
   overflow: hidden;
 }
 
 .post {
   width: 100%;
+  margin-bottom: 20px;
   overflow: hidden;
 }
 
@@ -20,19 +22,33 @@
 .info {
   display: flex;
   flex-direction: row;
+  column-gap: 10px;
   align-items: center;
   padding: 10px 0px;
 }
 
 .profile {
-  width: 40px;
-  aspect-ratio: 1/1;
-}
-
-.profile-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   aspect-ratio: 1/1;
   border-radius: 50%;
-  width: 100%;
+  background-color: white;
   overflow: hidden;
+}
+
+.profile-image {
+  /* width: 40px;
+  aspect-ratio: 1/1;
+  /* border-radius: 50%; */
+  /* width: 100%; */
+  /* overflow: hidden; */
+  max-height: 100%;
+}
+
+@media (min-width: 768px) {
+  .post {
+    margin-bottom: 40px;
+  }
 }

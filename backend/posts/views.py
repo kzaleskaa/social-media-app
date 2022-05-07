@@ -174,5 +174,3 @@ class ManageHome(APIView):
         result = PostsSerializer(posts, many=True)
 
         return Response({"posts": result.data}, status=status.HTTP_200_OK)
-
-

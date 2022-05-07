@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -5,8 +6,6 @@ import {
   LOAD_USER_FAIL,
   GET_ERROR,
 } from "../types/types";
-
-import axios from "axios";
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.getItem("access")) {

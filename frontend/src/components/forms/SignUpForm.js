@@ -1,12 +1,10 @@
 import { useState } from "react";
-
 import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signUpNewUser } from "../../actions/signUpActions";
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const errorMsg = useSelector((state) => state.error.msg);
 
   const [enteredData, setEnteredData] = useState({
     email: "",
@@ -47,24 +45,10 @@ const SignUp = () => {
     }
   };
 
-  const getErrorMsg = () => {
-    let errors = [];
-    
-    for (let i in errorMsg) {
-      errors.push(errorMsg[i][0]);
-    }
-
-    return errors;
-  };
-
   return (
     <>
       <div className="form-wrapper">
         <h1>Sign Up</h1>
-
-        {errorMsg &&
-          getErrorMsg().map((item, index) => <p key={index}>{item}</p>)}
-
         <form className="form" onSubmit={onSubmitHandler}>
           <input
             id="email"

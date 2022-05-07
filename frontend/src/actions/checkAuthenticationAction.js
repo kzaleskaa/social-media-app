@@ -1,6 +1,5 @@
-import { AUTHENTICATED_FAIL, AUTHENTICATED_SUCCESS } from "../types/types";
-
 import axios from "axios";
+import { AUTHENTICATED_FAIL, AUTHENTICATED_SUCCESS } from "../types/types";
 
 export const checkAuthentication = () => async (dispatch) => {
   if (localStorage.getItem("access")) {

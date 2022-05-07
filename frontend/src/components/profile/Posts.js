@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import classes from "./Posts.module.css";
 import Modal from "../modal/Modal";
 import Comments from "./Comments";

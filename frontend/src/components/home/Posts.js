@@ -1,8 +1,6 @@
 import axios from "axios";
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import classes from "./Posts.module.css";
 
 const Posts = () => {
@@ -49,11 +47,11 @@ const Posts = () => {
               {item.user.nickname}
             </Link>
           </div>
-          <img 
-            src={`${process.env.REACT_APP_BACKEND}${item.image}`}
-            className={classes["post-image"]}
-            alt="user's post"
-          />
+            <img
+              src={`${process.env.REACT_APP_BACKEND}${item.image}`}
+              className={classes["post-image"]}
+              alt="user's post"
+            />
         </div>
       ))}
     </div>

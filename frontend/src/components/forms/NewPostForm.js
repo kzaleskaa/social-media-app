@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import Modal from "../modal/Modal";
-
 import classes from "./NewPostForm.module.css";
 
 const NewPost = () => {

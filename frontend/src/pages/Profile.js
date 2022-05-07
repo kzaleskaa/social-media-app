@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
 import { useMatch } from "react-router";
-
 import Information from "../components/profile/Information";
 import Posts from "../components/profile/Posts";
 

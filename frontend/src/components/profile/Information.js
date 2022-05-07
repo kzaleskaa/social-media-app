@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
 import NewPost from "../forms/NewPostForm";
 import classes from "./Information.module.css";
 

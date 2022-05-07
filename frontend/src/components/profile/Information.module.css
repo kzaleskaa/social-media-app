@@ -17,15 +17,18 @@
 }
 
 .photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100px;
   aspect-ratio: 1/1;
   border-radius: 50%;
   border: 1px solid var(--grayish-blue);
+  background-color: white;
   overflow: hidden;
 }
 
 .photo-container img {
-  max-width: 100%;
   max-height: 100%;
 }
 

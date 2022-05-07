@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_FAIL,
@@ -5,8 +6,6 @@ import {
   PASSWORD_CONFIRMATION_FAIL,
   GET_ERROR,
 } from "../types/types";
-
-import axios from "axios";
 
 export const changePassword = (email) => async (dispatch) => {
   const configuration = {

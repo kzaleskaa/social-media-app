@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate, useMatch } from "react-router";
-
 import { confirmChangePassword } from "../../actions/passwordAction";
 import { useDispatch } from "react-redux";
 
@@ -32,7 +31,7 @@ const ChangePasswordConfirmForm = () => {
         enteredData.re_password
       )
     );
-    navigate("/");
+    navigate("/home");
   };
 
   return (

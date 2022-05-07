@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
@@ -5,8 +6,6 @@ import {
   ACTIVATION_FAIL,
   GET_ERROR,
 } from "../types/types";
-
-import axios from "axios";
 
 export const signUpNewUser =
   (first_name, last_name, email, nickname, password, re_password) =>

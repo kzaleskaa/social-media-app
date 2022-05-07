@@ -1,9 +1,9 @@
+import { useEffect } from "react";
 import { Outlet } from "react-router";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import classes from "./LoginLayout.module.css";
-import { useEffect } from "react";
 
 const LoginLayout = () => {
   const navigate = useNavigate();

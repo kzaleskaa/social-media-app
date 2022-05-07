@@ -6,15 +6,17 @@ from posts.models import Post, Comment, Like
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('user', 'date', 'likes_number', 'comments_number')
-    list_filter = ('user', 'date')
+    list_display = ['id', 'user', 'date', 'likes_number', 'comments_number']
+    list_filter = ['user', 'date']
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'date')
-    list_filter = ('user', 'date')
+    list_display = ['id', 'user', 'post', 'date']
+    list_filter = ['user', 'post','date']
 
 
-admin.site.register(Like)
-
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'user_id', 'post']
+    list_filter = ['user_id', 'post']
