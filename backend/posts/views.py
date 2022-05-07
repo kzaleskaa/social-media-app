@@ -1,7 +1,10 @@
+import json
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Post, Comment, Like
+from users.models import User, Follower
 from .serializers import PostsSerializer, CommentSerializer
 
 
@@ -157,3 +160,19 @@ class ManageLikes(APIView):
             return Response({'success': 'Like was successfully deleted.'}, status=status.HTTP_204_NO_CONTENT)
         except Exception as error:
             return Response({'error': 'Something went wrong when deleting like.'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ManageHome(APIView):
+    def get(self, request):
+        user = request.user
+
+        following = Follower.objects.filter(follower_id=user).values_list("user_id", flat=True)
+
+        users = User.objects.filter(pk__in=following)
+        posts = Post.objects.filter(user__in=users).order_by("-date")
+
+        result = PostsSerializer(posts, many=True)
+
+        return Response({"posts": result.data}, status=status.HTTP_200_OK)
+
+
