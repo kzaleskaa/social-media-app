@@ -1,0 +1,38 @@
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 50%;
+  overflow: hidden;
+}
+
+.post {
+  width: 100%;
+  overflow: hidden;
+}
+
+.post-image {
+  margin: auto;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+.profile {
+  width: 40px;
+  aspect-ratio: 1/1;
+}
+
+.profile-image {
+  width: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  width: 100%;
+  overflow: hidden;
+}

@@ -50,7 +50,7 @@ const MainNavigation = () => {
     <nav className={classes.navigation}>
       <ul className={classes["links-list"]}>
         <li>
-          <NavLink to="/" onClick={() => setShowUserOptions(false)}>
+          <NavLink to="/home" onClick={() => setShowUserOptions(false)}>
             Home
           </NavLink>
         </li>
