@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Posts.module.css";
 import useHttp from "../../hooks/use-http";
+import PostDetails from "../profile/PostDetails";
 
 const Posts = () => {
   const [posts, setPosts] = useState();
@@ -45,6 +46,7 @@ const Posts = () => {
                 alt="user's post"
               />
             </div>
+            <PostDetails post={item} />
           </div>
         ))}
     </div>

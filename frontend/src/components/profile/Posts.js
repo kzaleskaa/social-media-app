@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./Posts.module.css";
 import Modal from "../modal/Modal";
-import Comments from "./Comments";
+import PostDetails from "./PostDetails";
 
 const Posts = (props) => {
   const [modalIsShow, setModalIsShown] = useState(false);
@@ -70,7 +70,7 @@ const Posts = (props) => {
                 alt="post"
               />
             </div>
-            <Comments post={posts[showNumber]} />
+            <PostDetails post={posts[showNumber]} />
           </div>
         </Modal>
       )}

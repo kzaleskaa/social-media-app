@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
-
-import classes from "./Comments.module.css";
+import PostInfo from "./PostInfo";
+import classes from "./PostDetails.module.css";
 import { useSelector } from "react-redux";
 
 const Comments = (props) => {
@@ -94,7 +94,11 @@ const Comments = (props) => {
 
   return (
     <div className={classes.info}>
-      <p>{post.description}</p>
+      <PostInfo
+        description={post.description}
+        postId={post.id}
+        curentUser={currentUser === post.user.nickname}
+      />
       <div id={classes.comments}>
         {comments.map((item) => (
           <div key={item.id} className={classes.comment}>
@@ -104,10 +108,9 @@ const Comments = (props) => {
                   {item.user.nickname}
                 </Link>
               </div>
-              <div>{item.date}</div>
+              <div className={classes.date}>{item.date}</div>
               <div>{item.text}</div>
             </div>
-
             {currentUser === item.user.nickname && (
               <div>
                 <button
@@ -129,7 +132,9 @@ const Comments = (props) => {
           color={like ? "#be0000" : "black"}
           onClick={updateLike}
         />
-        <p>{new Date(post.date).toLocaleDateString()}</p>
+        <p className={classes.date}>
+          Publication date: {new Date(post.date).toLocaleDateString()}
+        </p>
         <form className={classes["comment-section"]} onSubmit={addNewComment}>
           <input
             type="text"

@@ -1,0 +1,11 @@
+.container {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.container button {
+  border: none;
+  background-color: transparent;
+}
