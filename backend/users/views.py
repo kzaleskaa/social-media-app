@@ -19,6 +19,16 @@ class CurrrentUser(APIView):
 
         return Response(serialized.data)
 
+    def patch(self, request):
+        user = request.user
+        data = request.data
+
+        user.image = data["image"]
+
+        user.save()
+
+        return Response({"user": "user"})
+
 
 class UserByNickname(APIView):
     """Manage users based on nickname."""

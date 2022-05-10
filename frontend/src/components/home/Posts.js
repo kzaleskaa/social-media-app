@@ -1,22 +1,32 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Posts.module.css";
-import useHttp from "../../hooks/use-http";
 import PostDetails from "../profile/PostDetails";
 
 const Posts = () => {
   const [posts, setPosts] = useState();
 
-  const httpData = useHttp(
-    {
-      url: `${process.env.REACT_APP_BACKEND}/api/posts/home`,
+  
+  const configuration = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("access")}`,
     },
-    (response) => {
-      setPosts(response.posts);
-    }
-  );
+  };
 
-  const { isLoading, error, sendRequest: downloadPosts } = httpData;
+  const downloadPosts = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND}/api/posts/home`,
+        configuration
+      );
+
+      setPosts(response.data.posts);
+    } catch (err) {
+      alert("Something went wrong!")
+    }
+  };
 
   useEffect(() => {
     downloadPosts();

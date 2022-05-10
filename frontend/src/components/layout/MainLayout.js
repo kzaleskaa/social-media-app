@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { checkAuthentication } from "../../actions/checkAuthenticationAction";
 import { loadUser } from "../../actions/loginAction";
-
 import { useDispatch } from "react-redux";
 
 const MainLayout = (props) => {

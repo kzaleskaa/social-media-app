@@ -28,7 +28,7 @@ const Posts = (props) => {
 
   const presentUserPosts = () => {
     if (typeof posts === "string") {
-      return <p>{posts}</p>;
+      return <p className={classes["no-posts"]}>{posts}</p>;
     }
 
     const postsCard = (

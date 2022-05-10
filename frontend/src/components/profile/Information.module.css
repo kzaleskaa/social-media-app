@@ -26,6 +26,7 @@
   border: 1px solid var(--grayish-blue);
   background-color: white;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .photo-container img {

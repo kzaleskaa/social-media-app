@@ -23,6 +23,12 @@
   cursor: pointer;
 }
 
+.no-posts {
+  font-size: 18px;
+  line-height: 3;
+  text-align: center;
+}
+
 .post img {
   max-height: 100%;
 }

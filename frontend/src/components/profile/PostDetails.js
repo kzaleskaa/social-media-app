@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import PostInfo from "./PostInfo";
 import classes from "./PostDetails.module.css";
-import { useSelector } from "react-redux";
 
 const Comments = (props) => {
   const [like, setLike] = useState(false);

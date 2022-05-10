@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router";
+import { Navigate } from "react-router-dom";
 import React, { Suspense } from "react";
 
 import * as Loader from "react-loader-spinner";
@@ -9,10 +10,8 @@ import LoginLayout from "./components/layout/LoginLayout";
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Profile = React.lazy(() => import("./pages/Profile"));
-
 const SignUp = React.lazy(() => import("./pages/Signup"));
 const Login = React.lazy(() => import("./pages/Login"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
 const ChangePassword = React.lazy(() => import("./pages/ChangePassword"));
 const ChangePasswordConfirm = React.lazy(() =>
   import("./pages/ChangePasswordConfirm")
@@ -48,7 +47,7 @@ const App = () => {
             <Route path="/profile/:user" element={<Profile />} />
             <Route path="/home" element={<Home />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </Suspense>
     </MainLayout>

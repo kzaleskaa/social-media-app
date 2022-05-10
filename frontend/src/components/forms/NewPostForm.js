@@ -66,7 +66,7 @@ const NewPost = () => {
                 ref={enteredDescrption}
                 placeholder="Your description"
               />
-              <button type="submit" onSubmit={addNewPostHandler}>
+              <button type="submit">
                 Add
               </button>
             </form>
