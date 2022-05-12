@@ -30,3 +30,4 @@ export const ACTIVATION_FAIL = "ACTIVATION_FAIL";
 
 // ERROR
 export const GET_ERROR = "GET_ERROR";
+export const NO_ERROR = "NO_ERROR";

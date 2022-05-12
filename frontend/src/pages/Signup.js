@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signUpNewUser } from "../actions/signUpActions";
+import { NO_ERROR } from "../types/types";
 
 const SignUp = () => {
   const dispatch = useDispatch();
-
+  const errorMsg = useSelector((state) => state.error.msg.signup);
+  const [error, setError] = useState("");
   const [enteredData, setEnteredData] = useState({
     email: "",
     first_name: "",
@@ -42,13 +45,25 @@ const SignUp = () => {
           enteredData.password2
         )
       );
+      setError("");
+    } else {
+      setError("Your passwords are not the same.");
     }
   };
+
+  useEffect(() => {
+    dispatch({ type: NO_ERROR });
+  }, []);
 
   return (
     <>
       <div className="form-wrapper">
         <h1>Sign Up</h1>
+        {errorMsg &&
+          Object.keys(errorMsg).map((item) => (
+            <p key={item}>{errorMsg[item]}</p>
+          ))}
+        {error && <p>{error}</p>}
         <form className="form" onSubmit={onSubmitHandler}>
           <input
             id="email"

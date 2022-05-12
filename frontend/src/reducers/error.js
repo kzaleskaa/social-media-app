@@ -1,4 +1,4 @@
-import { GET_ERROR } from "../types/types";
+import { GET_ERROR, NO_ERROR } from "../types/types";
 
 const initialState = {
   msg: "",
@@ -14,6 +14,8 @@ export const errorRedcer = (state = initialState, action) => {
         msg: payload.msg,
         status: payload.status,
       };
+    case NO_ERROR:
+      return initialState
     default:
       return state;
   }

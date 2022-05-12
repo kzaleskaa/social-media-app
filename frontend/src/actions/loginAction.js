@@ -53,6 +53,11 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch(loadUser());
   } catch (err) {
+    const error = {
+      msg: { login: err.response.data },
+      status: err.response.status,
+    };
     dispatch({ type: LOGIN_FAIL });
+    dispatch({ type: GET_ERROR, payload: error });
   }
 };

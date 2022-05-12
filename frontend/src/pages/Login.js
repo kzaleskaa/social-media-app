@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../actions/loginAction";
+import { NO_ERROR } from "../types/types";
 
 const Login = () => {
   const dispatch = useDispatch();
-
+  const errorMsg = useSelector((state) => state.error.msg);
   const [enteredData, setEnteredData] = useState({ email: "", password: "" });
-
   const { enteredEmail, enteredPassword } = enteredData;
 
   const onChangeHandler = (e) => {
@@ -19,10 +20,15 @@ const Login = () => {
     dispatch(login(enteredData.email, enteredData.password));
   };
 
+  useEffect(() => {
+    dispatch({ type: NO_ERROR });
+  }, []);
+
   return (
     <>
       <div className="form-wrapper">
         <h1>Log In</h1>
+        {errorMsg.login && <p>{errorMsg.login.detail}</p>}
         <div className="form">
           <form className="form" onSubmit={onSubmitHandler}>
             <input
