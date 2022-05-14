@@ -18,14 +18,8 @@ const SignUp = () => {
     password2: "",
   });
 
-  const {
-    enteredEmail,
-    enteredFirstName,
-    enteredLastName,
-    enteredNickname,
-    enteredPassword1,
-    enteredPassword2,
-  } = enteredData;
+  const { email, first_name, last_name, nickname, password1, password2 } =
+    enteredData;
 
   const onChangeHandler = (e) => {
     setEnteredData({ ...enteredData, [e.target.id]: e.target.value });
@@ -48,12 +42,20 @@ const SignUp = () => {
       setError("");
     } else {
       setError("Your passwords are not the same.");
+      setEnteredData({ ...enteredData, password1: "", password2: "" });
     }
   };
 
   useEffect(() => {
     dispatch({ type: NO_ERROR });
   }, []);
+
+  useEffect(() => {
+    if (errorMsg || error) {
+      setEnteredData({ ...enteredData, password1: "", password2: "" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, errorMsg]);
 
   return (
     <>
@@ -70,7 +72,7 @@ const SignUp = () => {
             name="email"
             placeholder="Email address"
             type="email"
-            value={enteredEmail}
+            value={email}
             onChange={onChangeHandler}
             required
           />
@@ -79,7 +81,7 @@ const SignUp = () => {
             name="first_name"
             placeholder="First Name"
             type="text"
-            value={enteredFirstName}
+            value={first_name}
             onChange={onChangeHandler}
             required
           />
@@ -88,7 +90,7 @@ const SignUp = () => {
             name="last_name"
             placeholder="Last Name"
             type="text"
-            value={enteredLastName}
+            value={last_name}
             onChange={onChangeHandler}
             required
           />
@@ -97,7 +99,7 @@ const SignUp = () => {
             name="nickname"
             placeholder="nickname"
             type="text"
-            value={enteredNickname}
+            value={nickname}
             onChange={onChangeHandler}
             required
           />
@@ -106,7 +108,7 @@ const SignUp = () => {
             name="password1"
             placeholder="Password"
             type="password"
-            value={enteredPassword1}
+            value={password1}
             onChange={onChangeHandler}
             required
           />
@@ -115,7 +117,7 @@ const SignUp = () => {
             name="password2"
             placeholder="Repeat password"
             type="password"
-            value={enteredPassword2}
+            value={password2}
             onChange={onChangeHandler}
             required
           />

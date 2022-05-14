@@ -9,7 +9,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const errorMsg = useSelector((state) => state.error.msg);
   const [enteredData, setEnteredData] = useState({ email: "", password: "" });
-  const { enteredEmail, enteredPassword } = enteredData;
+  const { email, password } = enteredData;
 
   const onChangeHandler = (e) => {
     setEnteredData({ ...enteredData, [e.target.id]: e.target.value });
@@ -18,10 +18,12 @@ const Login = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(login(enteredData.email, enteredData.password));
+    setEnteredData({ ...enteredData, password: "" });
   };
 
   useEffect(() => {
     dispatch({ type: NO_ERROR });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -36,7 +38,7 @@ const Login = () => {
               name="email"
               placeholder="Email"
               type="email"
-              value={enteredEmail}
+              value={email}
               onChange={onChangeHandler}
               required
             />
@@ -45,7 +47,7 @@ const Login = () => {
               name="password"
               placeholder="Password"
               type="password"
-              value={enteredPassword}
+              value={password}
               onChange={onChangeHandler}
               required
             />

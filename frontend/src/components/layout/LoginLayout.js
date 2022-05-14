@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import classes from "./LoginLayout.module.css";
+import { Link } from "react-router-dom";
 
 const LoginLayout = () => {
   const navigate = useNavigate();
@@ -12,7 +13,8 @@ const LoginLayout = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      return navigate(-1, { replace: true });
+      // let from = location.state?.from?.pathname;
+      // navigate(from, { replace: true });
     }
     if (!isAuthenticated && location.pathname === "/auth") {
       return navigate("/auth/login", { replace: true });
@@ -23,6 +25,11 @@ const LoginLayout = () => {
   return (
     <>
       <div className={classes["page-content"]}>
+        <Link
+          to={{ pathname: "/nextpath", state: { prevPath: location.pathname } }}
+        >
+          Example Link
+        </Link>
         <Outlet />
       </div>
     </>

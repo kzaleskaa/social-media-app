@@ -7,7 +7,6 @@ import PostDetails from "../profile/PostDetails";
 const Posts = () => {
   const [posts, setPosts] = useState();
 
-  
   const configuration = {
     headers: {
       "Content-Type": "application/json",
@@ -24,12 +23,13 @@ const Posts = () => {
 
       setPosts(response.data.posts);
     } catch (err) {
-      alert("Something went wrong!")
+      alert("Something went wrong!");
     }
   };
 
   useEffect(() => {
     downloadPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -10,7 +10,6 @@ const ChangeProfileImage = (props) => {
 
   const updateProfileHandler = async (e) => {
     e.preventDefault();
-
     const configuration = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -23,7 +22,7 @@ const ChangeProfileImage = (props) => {
 
     try {
       await axios.patch(
-        "http://127.0.0.1:8000/api/profile/me/",
+        `${process.env.REACT_APP_BACKEND}/api/profile/me/`,
         formData,
         configuration
       );

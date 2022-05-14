@@ -25,7 +25,7 @@ const NewPost = () => {
 
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/posts/",
+        `${process.env.REACT_APP_BACKEND}/api/posts/`,
         formData,
         configuration
       );
@@ -66,9 +66,7 @@ const NewPost = () => {
                 ref={enteredDescrption}
                 placeholder="Your description"
               />
-              <button type="submit">
-                Add
-              </button>
+              <button type="submit">Add</button>
             </form>
           </div>
         </Modal>
