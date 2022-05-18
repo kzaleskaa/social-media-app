@@ -1,11 +1,11 @@
 <h1 align="center">Instagram Clone Web App </h1>
 
-## I. Description
-Instagram clone is a project realised during "Web application technologies" course.
+## 1. Description
+Instagram clone is a project realised during "Web application technologies" course. The application uses a djoser library which is a REST implementation of Django authentication system. JSON Web Token is a selected authentication backend.
 
-## II. Used technologies
+## 2. Used technologies
 - Backend
-    - Python 3.10.0
+    - Python 3.10
     - Django 3.1
     - Django Rest Framework
     - Djoser
@@ -15,7 +15,63 @@ Instagram clone is a project realised during "Web application technologies" cour
     - Redux 
 - Database
     - PostgreSQL
-## III. Installation
+  
+## 3. Installation
+**You will need node and npm installed globally on your machine ([Node.js](https://nodejs.org/en/)).** 
+     
+Clone this repo and install all required dependencies. Go into the project folder and type the following command:
+  ```
+  git clone https://github.com/kzaleskaa/instagram-clone.git
+  cd instagram-clone
+  ```
+### 3.1. Frontend setup
+1. Install all npm packages
+  ```
+  npm install
+  ```
+2. Add .env file with url:
+  ```
+  REACT_APP_BACKEND=http://127.0.0.1:8000
+  ```
+3. Run the application
+  ```
+  npm start
+  ```
+
+### 3.2. Backend setup
+1. Create your own Python virtual environment
+  ```
+  python -m venv venv
+  ```
+2. Activate created environment
+  ```
+  venv/Scripts/activate
+  ```
+3. Install all necessary packages
+  ```
+  pip install requirements.txt
+  ```
+4. Add .env file with content:
+  ```
+  SECRET_KEY = <DJANGO SECRET KEY>
+  
+  EMAIL_HOST = <EMAIL HOST>
+  EMAIL_HOST_USER = <EMAIL ADDRESS>
+  EMAIL_HOST_PASSWORD = <PASSWORD OF EMAIL ADDRESS>
+  
+  DATABASE_NAME = <DATABASE NAME>  
+  DATABASE_USER = <MASTER USERNAME>
+  DATABASE_PASSWORD = <DATABASE PASSWORD>  
+  DATABASE_HOST = <ENDPOINT>
+  ```
+5. Create superuser to get access to administration site
+  ```
+  python manage.py createsuperuser
+  ```
+6. Run backend
+  ```
+  python manage.py runserver
+  ```
 
 ## IV. Final effect
 
