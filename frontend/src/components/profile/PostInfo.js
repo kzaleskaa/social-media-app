@@ -1,10 +1,7 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import classes from "./PostInfo.module.css";
 
 const PostInfo = (props) => {
-  const naviagte = useNavigate();
-
   const configuration = {
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +15,7 @@ const PostInfo = (props) => {
         `${process.env.REACT_APP_BACKEND}/api/posts/${props.postId}`,
         configuration
       );
-      naviagte(0);
+      props.setUpdatePosts((prev) => prev - 1);
     } catch (err) {
       alert("Something went wrong! Try again!");
     }

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import { Navigate } from "react-router-dom";
 import React, { Suspense } from "react";
-
+import classes from "./App.module.css";
 import * as Loader from "react-loader-spinner";
 
 import Layout from "./components/layout/Layout";
@@ -19,12 +19,11 @@ const ChangePasswordConfirm = React.lazy(() =>
 const ActivateAccount = React.lazy(() => import("./pages/ActivateAccount"));
 
 const App = () => {
-  const style = { display: "flex", justifyContent: "center" };
   return (
     <MainLayout>
       <Suspense
         fallback={
-          <div style={style}>
+          <div className={classes.loader}>
             <Loader.TailSpin color="#4c4c4c" height={70} width={70} />
           </div>
         }

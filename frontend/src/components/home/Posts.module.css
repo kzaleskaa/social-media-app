@@ -1,6 +1,7 @@
 .posts-container {
   display: flex;
   flex-direction: column;
+  row-gap: 30px;
   margin: 0 auto;
   width: 55%;
   min-width: 220px;
@@ -47,8 +48,3 @@
   max-width: 100%;
 }
 
-@media (min-width: 768px) {
-  .post {
-    margin-bottom: 40px;
-  }
-}

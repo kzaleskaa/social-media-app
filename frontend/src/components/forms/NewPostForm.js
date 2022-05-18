@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Modal from "../modal/Modal";
 import classes from "./NewPostForm.module.css";
 
-const NewPost = () => {
+const NewPost = (props) => {
   const enteredImage = useRef(null);
   const enteredDescrption = useRef("");
   const [addPost, setAddPost] = useState(false);
-  const navigate = useNavigate();
 
   const addNewPostHandler = async (e) => {
     e.preventDefault();
@@ -29,7 +27,8 @@ const NewPost = () => {
         formData,
         configuration
       );
-      navigate(0);
+      setAddPost((prev) => !prev);
+      props.setUpdatePosts((prev) => prev + 1);
     } catch (err) {
       alert(err);
     }

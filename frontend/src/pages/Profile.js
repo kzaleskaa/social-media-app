@@ -8,6 +8,8 @@ const Profile = () => {
   const [data, setData] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [updatePosts, setUpdatePosts] = useState(0);
+
   let match = useMatch("profile/:nick");
   const nickname = match.params.nick;
 
@@ -29,6 +31,7 @@ const Profile = () => {
 
       setData(response.data);
       setError(false);
+      setUpdatePosts(response.data.user.posts_number);
     } catch (err) {
       setError(true);
     }
@@ -38,7 +41,8 @@ const Profile = () => {
 
   useEffect(() => {
     loadUser();
-  }, [nickname]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nickname, updatePosts]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -53,8 +57,9 @@ const Profile = () => {
         user={data.user}
         follow={data.follow}
         loadUser={loadUser}
+        setUpdatePosts={setUpdatePosts}
       />
-      <Posts posts={data.posts} />
+      <Posts posts={data.posts} setUpdatePosts={setUpdatePosts} />
     </>
   );
 };

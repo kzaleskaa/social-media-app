@@ -12,7 +12,7 @@ const Information = (props) => {
 
   const addNewPost = (
     <div className={classes["new-post"]}>
-      <NewPost />
+      <NewPost setUpdatePosts={props.setUpdatePosts} />
     </div>
   );
 

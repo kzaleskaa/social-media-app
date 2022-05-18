@@ -70,7 +70,10 @@ const Posts = (props) => {
                 alt="post"
               />
             </div>
-            <PostDetails post={posts[showNumber]} />
+            <PostDetails
+              post={posts[showNumber]}
+              setUpdatePosts={props.setUpdatePosts}
+            />
           </div>
         </Modal>
       )}

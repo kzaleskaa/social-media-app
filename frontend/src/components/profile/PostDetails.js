@@ -98,6 +98,7 @@ const Comments = (props) => {
         description={post.description}
         postId={post.id}
         curentUser={currentUser === post.user.nickname}
+        setUpdatePosts={props.setUpdatePosts}
       />
       <div id={classes.comments}>
         {comments.map((item) => (
