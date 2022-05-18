@@ -1,6 +1,5 @@
-import { AUTHENTICATED_FAIL, AUTHENTICATED_SUCCESS } from "../types/types";
-
 import axios from "axios";
+import { AUTHENTICATED_FAIL, AUTHENTICATED_SUCCESS } from "../types/types";
 
 export const checkAuthentication = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
@@ -11,11 +10,10 @@ export const checkAuthentication = () => async (dispatch) => {
       },
     };
 
-    const data = JSON.stringify({ token: localStorage.getItem("access") });
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND}/auth/jwt/verify/`,
-        data,
+        JSON.stringify({ token: localStorage.getItem("access") }),
         configuration
       );
 

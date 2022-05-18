@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import Modal from "../modal/Modal";
-
 import classes from "./NewPostForm.module.css";
 
-const NewPost = () => {
+const NewPost = (props) => {
   const enteredImage = useRef(null);
   const enteredDescrption = useRef("");
   const [addPost, setAddPost] = useState(false);
@@ -24,10 +23,12 @@ const NewPost = () => {
 
     try {
       await axios.post(
-        "http://127.0.0.1:8000/api/posts/",
+        `${process.env.REACT_APP_BACKEND}/api/posts/`,
         formData,
         configuration
       );
+      setAddPost((prev) => !prev);
+      props.setUpdatePosts((prev) => prev + 1);
     } catch (err) {
       alert(err);
     }
@@ -64,9 +65,7 @@ const NewPost = () => {
                 ref={enteredDescrption}
                 placeholder="Your description"
               />
-              <button type="submit" onSubmit={addNewPostHandler}>
-                Add
-              </button>
+              <button type="submit">Add</button>
             </form>
           </div>
         </Modal>

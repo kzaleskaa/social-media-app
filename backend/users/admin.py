@@ -11,7 +11,7 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['email', 'nickname']
 
 
-admin.site.register(Follower)
-
-
-
+@admin.register(Follower)
+class FollowerAdmin(admin.ModelAdmin):
+    list_display = ['id', 'follower_id', 'user_id']
+    list_filter = ['follower_id', 'user_id']

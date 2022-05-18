@@ -6,12 +6,12 @@ import { useEffect } from "react";
 const ActivateAccount = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   let match = useMatch("/auth/activate/:uid/:token");
 
   const visitHomePage = (e) => {
     e.preventDefault();
-    navigate("/");
+    navigate("/home");
   };
 
   useEffect(() => {

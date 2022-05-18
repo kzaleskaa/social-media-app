@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
@@ -6,17 +7,15 @@ import {
   GET_ERROR,
 } from "../types/types";
 
-import axios from "axios";
+const configuration = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
 
 export const signUpNewUser =
   (first_name, last_name, email, nickname, password, re_password) =>
   async (dispatch) => {
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     const body = JSON.stringify({
       first_name,
       last_name,
@@ -36,7 +35,7 @@ export const signUpNewUser =
       dispatch({ type: SIGNUP_SUCCESS, payload: response.data });
     } catch (err) {
       const error = {
-        msg: err.response.data,
+        msg: { signup: err.response.data },
         status: err.response.status,
       };
 
@@ -46,21 +45,10 @@ export const signUpNewUser =
   };
 
 export const verifyNewUser = (uid, token) => async (dispatch) => {
-  const configuration = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  const body = JSON.stringify({
-    uid,
-    token,
-  });
-
   try {
     await axios.post(
       `${process.env.REACT_APP_BACKEND}/auth/users/activation/`,
-      body,
+      JSON.stringify({ uid, token }),
       configuration
     );
 

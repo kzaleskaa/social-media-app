@@ -1,14 +1,12 @@
 import axios from "axios";
-
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
-
-import classes from "./Comments.module.css";
-import { useSelector } from "react-redux";
+import PostInfo from "./PostInfo";
+import classes from "./PostDetails.module.css";
 
 const Comments = (props) => {
   const [like, setLike] = useState(false);
@@ -18,22 +16,22 @@ const Comments = (props) => {
   const newEnteredComment = useRef("");
   const post = props.post;
 
+  const configuration = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("access")}`,
+    },
+  };
+
   const addNewComment = async (e) => {
     e.preventDefault();
 
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
     try {
       await axios.post(
         `http://127.0.0.1:8000/api/posts/comments/${post.id}`,
         JSON.stringify({ text: newEnteredComment.current.value }),
         configuration
       );
-
       getAllComments();
       newEnteredComment.current.value = "";
     } catch (err) {
@@ -42,12 +40,6 @@ const Comments = (props) => {
   };
 
   const getAllComments = async () => {
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
     try {
       const result = await axios.get(
         `${process.env.REACT_APP_BACKEND}/api/posts/comments/${post.id}`,
@@ -63,12 +55,6 @@ const Comments = (props) => {
   };
 
   const deleteComment = async (comment_id) => {
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
     try {
       await axios.delete(
         `${process.env.REACT_APP_BACKEND}/api/posts/comment/${comment_id}`,
@@ -77,19 +63,12 @@ const Comments = (props) => {
     } catch (err) {
       alert("Something went wrong! Try again!");
     }
-
     getAllComments();
   };
 
-  const updateLike = async (post_id) => {
+  const updateLike = async () => {
     setLike((prev) => !prev);
 
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
     try {
       if (like) {
         await axios.delete(
@@ -115,7 +94,12 @@ const Comments = (props) => {
 
   return (
     <div className={classes.info}>
-      <p>{post.description}</p>
+      <PostInfo
+        description={post.description}
+        postId={post.id}
+        curentUser={currentUser === post.user.nickname}
+        setUpdatePosts={props.setUpdatePosts}
+      />
       <div id={classes.comments}>
         {comments.map((item) => (
           <div key={item.id} className={classes.comment}>
@@ -125,10 +109,9 @@ const Comments = (props) => {
                   {item.user.nickname}
                 </Link>
               </div>
-              <div>{item.date}</div>
+              <div className={classes.date}>{item.date}</div>
               <div>{item.text}</div>
             </div>
-
             {currentUser === item.user.nickname && (
               <div>
                 <button
@@ -150,7 +133,9 @@ const Comments = (props) => {
           color={like ? "#be0000" : "black"}
           onClick={updateLike}
         />
-        <p>{new Date(post.date).toLocaleDateString()}</p>
+        <p className={classes.date}>
+          Publication date: {new Date(post.date).toLocaleDateString()}
+        </p>
         <form className={classes["comment-section"]} onSubmit={addNewComment}>
           <input
             type="text"

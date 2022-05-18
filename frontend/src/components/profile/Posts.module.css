@@ -6,12 +6,6 @@
   margin-top: 10px;
 }
 
-.posts-container img {
-  aspect-ratio: 1/1;
-  max-width: 100%;
-  max-height: 100%;
-}
-
 .container {
   max-height: 1000px;
   overflow: hidden;
@@ -19,11 +13,29 @@
 }
 
 .post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: white;
   cursor: pointer;
 }
 
+.no-posts {
+  font-size: 18px;
+  line-height: 3;
+  text-align: center;
+}
+
+.post img {
+  max-height: 100%;
+}
+
 .photo {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
-  cursor: pointer;
 }

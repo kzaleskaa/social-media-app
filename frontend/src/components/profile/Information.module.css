@@ -17,15 +17,19 @@
 }
 
 .photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100px;
   aspect-ratio: 1/1;
   border-radius: 50%;
   border: 1px solid var(--grayish-blue);
+  background-color: white;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .photo-container img {
-  max-width: 100%;
   max-height: 100%;
 }
 
@@ -76,18 +80,12 @@
   .header {
     grid-template-columns: auto auto;
     grid-template-rows: auto auto auto;
-    grid-template-areas: "user info" "user info" "post post";
+    grid-template-areas: "user info" "user info" "post empty";
     justify-content: center;
     align-items: center;
     column-gap: 30px;
     border-bottom: 1px solid var(--grayish-blue);
     padding: 30px 0px;
-  }
-
-  .user {
-    align-items: flex-start;
-    text-align: left;
-    padding: 0;
   }
 
   .info-container {
@@ -113,10 +111,5 @@
 
   .number {
     display: inline-block;
-  }
-
-  .new-post {
-    align-items: flex-start;
-    text-align: left;
   }
 }

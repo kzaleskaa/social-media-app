@@ -1,47 +1,48 @@
 import axios from "axios";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useMatch } from "react-router";
-
 import Information from "../components/profile/Information";
 import Posts from "../components/profile/Posts";
 
 const Profile = () => {
   const [data, setData] = useState("");
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
-  const [postsNumber, setPostsNumber] = useState(0);
+  const [error, setError] = useState(false);
+  const [updatePosts, setUpdatePosts] = useState(0);
 
   let match = useMatch("profile/:nick");
-
   const nickname = match.params.nick;
 
-  const loadUser = useCallback(async () => {
-    setIsLoading(true);
-    setError("");
+  const configuration = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("access")}`,
+    },
+  };
 
-    const configuration = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-        Accept: "application/json",
-      },
-    };
+  const loadUser = async () => {
+    setIsLoading(true);
+
     try {
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/profile/${nickname}`,
+        `${process.env.REACT_APP_BACKEND}/api/profile/${nickname}`,
         configuration
       );
+
       setData(response.data);
+      setError(false);
+      setUpdatePosts(response.data.user.posts_number);
     } catch (err) {
-      setError("User not found!");
+      setError(true);
     }
+
     setIsLoading(false);
-  }, [nickname]);
+  };
 
   useEffect(() => {
     loadUser();
-  }, [loadUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nickname, updatePosts]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -52,13 +53,13 @@ const Profile = () => {
   return (
     <>
       <Information
-        postsNumber={postsNumber}
         nickname={nickname}
         user={data.user}
         follow={data.follow}
         loadUser={loadUser}
+        setUpdatePosts={setUpdatePosts}
       />
-      <Posts updatePostNumber={setPostsNumber} posts={data.posts} />
+      <Posts posts={data.posts} setUpdatePosts={setUpdatePosts} />
     </>
   );
 };

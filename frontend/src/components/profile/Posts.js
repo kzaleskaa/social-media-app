@@ -1,8 +1,7 @@
 import { useState } from "react";
-
 import classes from "./Posts.module.css";
 import Modal from "../modal/Modal";
-import Comments from "./Comments";
+import PostDetails from "./PostDetails";
 
 const Posts = (props) => {
   const [modalIsShow, setModalIsShown] = useState(false);
@@ -29,7 +28,7 @@ const Posts = (props) => {
 
   const presentUserPosts = () => {
     if (typeof posts === "string") {
-      return <p>{posts}</p>;
+      return <p className={classes["no-posts"]}>{posts}</p>;
     }
 
     const postsCard = (
@@ -71,7 +70,10 @@ const Posts = (props) => {
                 alt="post"
               />
             </div>
-            <Comments post={posts[showNumber]} />
+            <PostDetails
+              post={posts[showNumber]}
+              setUpdatePosts={props.setUpdatePosts}
+            />
           </div>
         </Modal>
       )}

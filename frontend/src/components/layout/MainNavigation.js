@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../actions/logoutAction";
-
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
@@ -47,33 +46,35 @@ const MainNavigation = () => {
   };
 
   return (
-    <nav className={classes.navigation}>
-      <ul className={classes["links-list"]}>
-        <li>
-          <NavLink to="/" onClick={() => setShowUserOptions(false)}>
-            Home
-          </NavLink>
-        </li>
-        <form onSubmit={searchUser}>
-          <input
-            type="text"
-            ref={inputRef}
-            placeholder="Search user by nickname"
-          />
-        </form>
-        <li>
-          <div className={classes["user-options"]}>
-            <div
-              className={classes.user}
-              onClick={() => setShowUserOptions((prev) => !prev)}
-            >
-              <img src="/avatar.png" alt="profile" />
+    <div className={classes.container}>
+      <nav className={classes.navigation}>
+        <ul className={classes["links-list"]}>
+          <li>
+            <NavLink to="/home" onClick={() => setShowUserOptions(false)}>
+              Home
+            </NavLink>
+          </li>
+          <form onSubmit={searchUser}>
+            <input
+              type="text"
+              ref={inputRef}
+              placeholder="Search user by nickname"
+            />
+          </form>
+          <li>
+            <div className={classes["user-options"]}>
+              <div
+                className={classes.user}
+                onClick={() => setShowUserOptions((prev) => !prev)}
+              >
+                <img src="/avatar.png" alt="profile" />
+              </div>
+              {showUserOptions && userOptions()}
             </div>
-            {showUserOptions && userOptions()}
-          </div>
-        </li>
-      </ul>
-    </nav>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 };
 

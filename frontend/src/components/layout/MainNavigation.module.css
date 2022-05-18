@@ -1,5 +1,13 @@
 .navigation {
+  position: fixed;
+  top: 0;
+  max-width: 1024px;
+  width: 100%;
   border-bottom: 1px solid var(--grayish-blue);
+  background-color: var(--light-grayish-violet);
+}
+.container {
+  margin-bottom: 60px;
 }
 
 .links-list {

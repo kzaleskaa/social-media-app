@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -5,8 +6,6 @@ import {
   LOAD_USER_FAIL,
   GET_ERROR,
 } from "../types/types";
-
-import axios from "axios";
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
@@ -43,12 +42,10 @@ export const login = (email, password) => async (dispatch) => {
     },
   };
 
-  const body = JSON.stringify({ email, password });
-
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_BACKEND}/auth/jwt/create/`,
-      body,
+      JSON.stringify({ email, password }),
       configuration
     );
 
@@ -56,6 +53,11 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch(loadUser());
   } catch (err) {
+    const error = {
+      msg: { login: err.response.data },
+      status: err.response.status,
+    };
     dispatch({ type: LOGIN_FAIL });
+    dispatch({ type: GET_ERROR, payload: error });
   }
 };

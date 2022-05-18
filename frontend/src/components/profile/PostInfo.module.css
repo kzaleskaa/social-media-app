@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--grayish-blue);
+}
+
+.container button {
+  border: none;
+  background-color: transparent;
+}
