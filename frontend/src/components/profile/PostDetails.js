@@ -28,7 +28,7 @@ const Comments = (props) => {
 
     try {
       await axios.post(
-        `http://127.0.0.1:8000/api/posts/comments/${post.id}`,
+        `${process.env.REACT_APP_BACKEND}/api/posts/comments/${post.id}`,
         JSON.stringify({ text: newEnteredComment.current.value }),
         configuration
       );

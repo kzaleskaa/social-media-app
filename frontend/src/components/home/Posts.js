@@ -20,7 +20,6 @@ const Posts = () => {
         `${process.env.REACT_APP_BACKEND}/api/posts/home`,
         configuration
       );
-
       setPosts(response.data.posts);
     } catch (err) {
       alert("Something went wrong!");

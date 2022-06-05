@@ -8,14 +8,15 @@ const ChangeProfileImage = (props) => {
   const enteredImage = useRef(null);
   const navigate = useNavigate();
 
+  const configuration = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${localStorage.getItem("access")}`,
+    },
+  };
+
   const updateProfileHandler = async (e) => {
     e.preventDefault();
-    const configuration = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${localStorage.getItem("access")}`,
-      },
-    };
 
     const formData = new FormData();
     formData.append("image", enteredImage.current.files[0]);

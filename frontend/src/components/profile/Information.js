@@ -26,12 +26,12 @@ const Information = (props) => {
     try {
       if (follow) {
         await axios.delete(
-          `http://127.0.0.1:8000/api/profile/followers/${props.user.pk}`,
+          `${process.env.REACT_APP_BACKEND}/api/profile/followers/${props.user.pk}`,
           configuration
         );
       } else {
         await axios.post(
-          `http://127.0.0.1:8000/api/profile/followers/${props.user.pk}`,
+          `${process.env.REACT_APP_BACKEND}/api/profile/followers/${props.user.pk}`,
           null,
           configuration
         );
@@ -39,7 +39,7 @@ const Information = (props) => {
       setFollow((prev) => !prev);
       props.loadUser();
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
 

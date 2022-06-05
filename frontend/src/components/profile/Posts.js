@@ -30,8 +30,7 @@ const Posts = (props) => {
     if (typeof posts === "string") {
       return <p className={classes["no-posts"]}>{posts}</p>;
     }
-
-    const postsCard = (
+    return (
       <div className={classes["posts-container"]}>
         {posts.map((item, index) => (
           <div
@@ -49,8 +48,6 @@ const Posts = (props) => {
         ))}
       </div>
     );
-
-    return postsCard;
   };
 
   return (
