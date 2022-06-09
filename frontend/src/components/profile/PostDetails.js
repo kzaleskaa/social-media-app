@@ -8,7 +8,7 @@ import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import PostInfo from "./PostInfo";
 import classes from "./PostDetails.module.css";
 
-const Comments = (props) => {
+const PostDetails = (props) => {
   const [like, setLike] = useState(false);
   const [likesNumber, setLikesNumber] = useState(0);
   const [comments, setComments] = useState([]);
@@ -100,6 +100,7 @@ const Comments = (props) => {
         curentUser={currentUser === post.user.nickname}
         setUpdatePosts={props.setUpdatePosts}
       />
+      <p onClick={() => props.setMapIsShow((prev) => !prev)}>my location</p>
       <div id={classes.comments}>
         {comments.map((item) => (
           <div key={item.id} className={classes.comment}>
@@ -152,4 +153,4 @@ const Comments = (props) => {
   );
 };
 
-export default Comments;
+export default PostDetails;

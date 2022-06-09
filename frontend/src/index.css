@@ -145,3 +145,17 @@ button:hover {
 p::first-letter {
   text-transform: capitalize;
 }
+
+/* MAP */
+.leaflet-container {
+  min-height: 60vh;
+  /* width: 30vw; */
+  margin: 0 auto;
+}
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Posts.module.css";
 import PostDetails from "../profile/PostDetails";
+import LocationMap from "../profile/LocationMap";
 
 const Posts = () => {
   const [posts, setPosts] = useState();
+  const [mapIsShow, setMapIsShow] = useState(false);
 
   const configuration = {
     headers: {
@@ -55,7 +57,10 @@ const Posts = () => {
                 alt="user's post"
               />
             </div>
-            <PostDetails post={item} />
+            <PostDetails post={item} setMapIsShow={setMapIsShow} />
+            {mapIsShow && (
+              <LocationMap onCloseModal={() => setMapIsShow(false)} />
+            )}
           </div>
         ))}
     </div>

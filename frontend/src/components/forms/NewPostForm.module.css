@@ -4,6 +4,7 @@
   justify-content: center;
   text-align: center;
   padding: 20px 14px;
+  overflow-y: auto !important;
 }
 
 .modal h1 {
@@ -35,6 +36,10 @@
   background-color: white;
   color: var(--very-dark-desaturated-violet);
   opacity: 1;
+}
+
+.modal form label {
+  text-align: left;
 }
 
 @media (min-width: 1024px) {

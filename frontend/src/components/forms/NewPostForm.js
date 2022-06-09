@@ -6,6 +6,7 @@ import classes from "./NewPostForm.module.css";
 const NewPost = (props) => {
   const enteredImage = useRef(null);
   const enteredDescrption = useRef("");
+  const enteredLocation = useRef("");
   const [addPost, setAddPost] = useState(false);
 
   const addNewPostHandler = async (e) => {
@@ -34,6 +35,20 @@ const NewPost = (props) => {
     }
   };
 
+  const searchLocation = async (e) => {
+    e.preventDefault();
+
+    console.log(process.env.LOCATION_API);
+    axios
+      .get(`${process.env.LOCATION_API}${enteredLocation.current.value}`)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <button
@@ -49,10 +64,22 @@ const NewPost = (props) => {
           onCloseModal={() => {
             setAddPost(false);
           }}
+          extraClass="form"
         >
           <div className={classes.modal}>
             <h1>Create your new post!</h1>
+            <form onSubmit={searchLocation}>
+              <label htmlFor="location">1. Choose location</label>
+              <input
+                type="text"
+                name="location"
+                ref={enteredLocation}
+                placeholder="Location"
+              />
+              <button>Search</button>
+            </form>
             <form onSubmit={addNewPostHandler}>
+              <label htmlFor="post-img">2. Select your photo</label>
               <input
                 type="file"
                 name="post-img"
@@ -60,12 +87,14 @@ const NewPost = (props) => {
                 ref={enteredImage}
                 required
               />
+              <label htmlFor="description">3. Add description</label>
               <input
                 type="text"
+                name="description"
                 ref={enteredDescrption}
                 placeholder="Your description"
               />
-              <button type="submit">Add</button>
+              <button type="submit">Add post</button>
             </form>
           </div>
         </Modal>
