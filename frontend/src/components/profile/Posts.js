@@ -77,7 +77,7 @@ const Posts = (props) => {
           </div>
         </Modal>
       )}
-      {mapIsShow && <LocationMap onCloseModal={() => setMapIsShow(false)} />}
+      {mapIsShow && <LocationMap lat={posts[showNumber].lat} lon={posts[showNumber].lon} onCloseModal={() => setMapIsShow(false)} />}
     </>
   );
 };

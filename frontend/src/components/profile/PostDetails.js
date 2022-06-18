@@ -100,7 +100,11 @@ const PostDetails = (props) => {
         curentUser={currentUser === post.user.nickname}
         setUpdatePosts={props.setUpdatePosts}
       />
-      <p onClick={() => props.setMapIsShow((prev) => !prev)}>my location</p>
+      {post.location && (
+        <p className={classes["location-name"]} onClick={() => props.setMapIsShow((prev) => !prev)}>
+          {post.location}
+        </p>
+      )}
       <div id={classes.comments}>
         {comments.map((item) => (
           <div key={item.id} className={classes.comment}>

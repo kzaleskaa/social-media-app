@@ -9,6 +9,9 @@ class Post(models.Model):
     image = models.ImageField(upload_to="posts_images", null=False)
     description = models.CharField(max_length=100, blank=True, default='')
     date = models.DateTimeField(auto_now=True)
+    location = models.TextField(blank=True, default='')
+    lat = models.FloatField(null=True)
+    lon = models.FloatField(null=True)
 
     def __str__(self):
         return f"{self.user}, {self.date}"

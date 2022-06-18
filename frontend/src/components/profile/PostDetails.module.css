@@ -83,6 +83,11 @@ div.info {
   font-size: 12px;
 }
 
+.location-name {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 @media (min-height: 1024px) {
   #comments {
     max-height: 30vh;
