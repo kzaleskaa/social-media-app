@@ -10,7 +10,7 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Take environment variables from .env
-load_dotenv(os.path.join(BASE_DIR, '.env'))
+load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -152,7 +152,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Rest framework
+# Rest framework settings
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -163,7 +163,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-# JWT
+# JWT settings
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
@@ -175,7 +175,7 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False,
 }
 
-# Djoser
+# Djoser settings
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
@@ -196,7 +196,7 @@ DJOSER = {
     }
 }
 
-# EMAIL
+# EMAIL CONFIGURATION
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True

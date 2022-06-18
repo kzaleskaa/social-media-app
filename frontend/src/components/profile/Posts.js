@@ -2,9 +2,11 @@ import { useState } from "react";
 import classes from "./Posts.module.css";
 import Modal from "../modal/Modal";
 import PostDetails from "./PostDetails";
+import LocationMap from "./LocationMap";
 
 const Posts = (props) => {
   const [modalIsShow, setModalIsShown] = useState(false);
+  const [mapIsShow, setMapIsShow] = useState(false);
   const [showNumber, setShowNumber] = useState(0);
 
   const posts = props.posts;
@@ -30,8 +32,7 @@ const Posts = (props) => {
     if (typeof posts === "string") {
       return <p className={classes["no-posts"]}>{posts}</p>;
     }
-
-    const postsCard = (
+    return (
       <div className={classes["posts-container"]}>
         {posts.map((item, index) => (
           <div
@@ -49,14 +50,12 @@ const Posts = (props) => {
         ))}
       </div>
     );
-
-    return postsCard;
   };
 
   return (
     <>
       {presentUserPosts()}
-      {modalIsShow && (
+      {modalIsShow && !mapIsShow && (
         <Modal
           onCloseModal={() => setModalIsShown(false)}
           changePostNextHandler={changePostNextHandler}
@@ -73,10 +72,12 @@ const Posts = (props) => {
             <PostDetails
               post={posts[showNumber]}
               setUpdatePosts={props.setUpdatePosts}
+              setMapIsShow={setMapIsShow}
             />
           </div>
         </Modal>
       )}
+      {mapIsShow && <LocationMap lat={posts[showNumber].lat} lon={posts[showNumber].lon} onCloseModal={() => setMapIsShow(false)} />}
     </>
   );
 };

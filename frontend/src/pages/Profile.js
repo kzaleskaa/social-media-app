@@ -9,7 +9,6 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [updatePosts, setUpdatePosts] = useState(0);
-
   let match = useMatch("profile/:nick");
   const nickname = match.params.nick;
 
@@ -22,7 +21,7 @@ const Profile = () => {
 
   const loadUser = async () => {
     setIsLoading(true);
-
+    
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_BACKEND}/api/profile/${nickname}`,

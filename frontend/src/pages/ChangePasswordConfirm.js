@@ -6,11 +6,11 @@ import { useDispatch } from "react-redux";
 const ChangePasswordConfirm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let match = useMatch("/auth/password/reset/confirm/:uid/:token");
   const [enteredData, setEnteredData] = useState({
     password: "",
     re_password: "",
   });
-  let match = useMatch("/auth/password/reset/confirm/:uid/:token");
 
   const onChangePasswordHandler = (e) => {
     e.preventDefault();

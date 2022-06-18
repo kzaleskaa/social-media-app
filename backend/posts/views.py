@@ -21,9 +21,12 @@ class ManagePostsViev(APIView):
 
             image = data["image"]
             description = data["description"]
+            lat = data["lat"]
+            lon = data["lon"]
+            location = data["location"]
 
             # create new post
-            Post.objects.create(user=user, image=image, description=description)
+            Post.objects.create(user=user, image=image, description=description, lat=lat, lon=lon, location=location)
 
             return Response({'success': 'New post was successfully created.'},
                             status=status.HTTP_201_CREATED)

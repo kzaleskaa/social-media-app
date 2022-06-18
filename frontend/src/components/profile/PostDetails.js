@@ -8,7 +8,7 @@ import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import PostInfo from "./PostInfo";
 import classes from "./PostDetails.module.css";
 
-const Comments = (props) => {
+const PostDetails = (props) => {
   const [like, setLike] = useState(false);
   const [likesNumber, setLikesNumber] = useState(0);
   const [comments, setComments] = useState([]);
@@ -28,7 +28,7 @@ const Comments = (props) => {
 
     try {
       await axios.post(
-        `http://127.0.0.1:8000/api/posts/comments/${post.id}`,
+        `${process.env.REACT_APP_BACKEND}/api/posts/comments/${post.id}`,
         JSON.stringify({ text: newEnteredComment.current.value }),
         configuration
       );
@@ -100,6 +100,11 @@ const Comments = (props) => {
         curentUser={currentUser === post.user.nickname}
         setUpdatePosts={props.setUpdatePosts}
       />
+      {post.location && (
+        <p className={classes["location-name"]} onClick={() => props.setMapIsShow((prev) => !prev)}>
+          {post.location}
+        </p>
+      )}
       <div id={classes.comments}>
         {comments.map((item) => (
           <div key={item.id} className={classes.comment}>
@@ -152,4 +157,4 @@ const Comments = (props) => {
   );
 };
 
-export default Comments;
+export default PostDetails;

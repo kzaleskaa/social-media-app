@@ -9,7 +9,6 @@ const MainLayout = (props) => {
   useEffect(() => {
     dispatch(checkAuthentication());
     dispatch(loadUser());
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

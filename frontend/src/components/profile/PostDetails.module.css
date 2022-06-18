@@ -8,7 +8,7 @@ div.info {
 
 #comments {
   row-gap: 14px;
-  max-height: 30vh;
+  max-height: 20vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -81,4 +81,15 @@ div.info {
 .date {
   font-style: italic;
   font-size: 12px;
+}
+
+.location-name {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (min-height: 1024px) {
+  #comments {
+    max-height: 30vh;
+  }
 }

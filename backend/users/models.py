@@ -35,7 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     nickname = models.CharField(max_length=255, unique=True, default=None)
-    image = models.ImageField(upload_to="user_images", null=True)
+    image = models.ImageField(upload_to="user_images", null=True, default="user_images/avatar.png")
 
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)

@@ -38,4 +38,11 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  max-height: 45vh;
+}
+
+@media (min-width: 1024px) {
+  .photo {
+    max-height: 100%;
+  }
 }
