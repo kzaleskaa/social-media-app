@@ -1,8 +1,6 @@
 from rest_framework import serializers
 from .models import Post, Comment
-from users.models import User
 from users.serializers import UserSerializer
-# create serializers from models
 
 
 class PostsSerializer(serializers.ModelSerializer):

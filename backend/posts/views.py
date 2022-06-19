@@ -1,5 +1,3 @@
-import json
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -9,11 +7,8 @@ from .serializers import PostsSerializer, CommentSerializer
 
 
 class ManagePostsViev(APIView):
-    """View to  add new post."""
 
     def post(self, request):
-        """Create new post with user's image and description."""
-
         try:
             user = request.user
 
@@ -37,11 +32,7 @@ class ManagePostsViev(APIView):
 
 
 class ManagePostDetailViev(APIView):
-    """Update or delete post."""
-
     def put(self, request, pk: int):
-        """Update existing post based on pk."""
-
         try:
             user = request.user
 
@@ -56,8 +47,6 @@ class ManagePostDetailViev(APIView):
             return Response({'error': 'Something went wrong when updating post.'}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
-        """Delete existing post based on pk."""
-
         try:
             user = request.user
 
@@ -70,11 +59,7 @@ class ManagePostDetailViev(APIView):
 
 
 class ManageComments(APIView):
-    """Create/delete comments to post."""
-
     def post(self, request, post_id):
-        """Create new comment to post."""
-
         try:
             user = request.user
             data = request.data
@@ -120,11 +105,7 @@ class ManageComments(APIView):
 
 
 class ManageComment(APIView):
-    """Actions for the selected comment - based on id of comment."""
-
     def delete(self, request, comment_id):
-        """Delete existing comment based on comment_id."""
-
         try:
             user = request.user
             comment = Comment.objects.get(pk=comment_id)
@@ -141,11 +122,7 @@ class ManageComment(APIView):
 
 
 class ManageLikes(APIView):
-    """Manage the likes of posts."""
-
     def post(self, request, post_id):
-        """Add new like to selected post."""
-
         try:
             user = request.user
 
@@ -160,8 +137,6 @@ class ManageLikes(APIView):
             return Response({'error': 'Something went wrong when adding like.'}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, post_id):
-        """Delete like of selected post."""
-
         try:
             user = request.user
 
@@ -173,11 +148,7 @@ class ManageLikes(APIView):
 
 
 class ManageHome(APIView):
-    """Manage the home page."""
-
     def get(self, request):
-        """Posts of following users."""
-
         user = request.user
 
         following = Follower.objects.filter(follower_id=user).values_list("user_id", flat=True)
@@ -187,4 +158,4 @@ class ManageHome(APIView):
 
         result = PostsSerializer(posts, many=True)
 
-        return Response({"posts": result.data}, status=status.HTTP_200_OK)
+        return Response({"posts": result.data[:10]}, status=status.HTTP_200_OK)

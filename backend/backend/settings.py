@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'djoser',
     'django_cleanup.apps.CleanupConfig',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [

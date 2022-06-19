@@ -24,7 +24,10 @@ const NewPost = (props) => {
     formData.append("description", enteredDescrption.current.value);
     formData.append("lat", location.lat);
     formData.append("lon", location.lon);
-    formData.append("location", `${location.address_line1}, ${location.address_line2}`);	
+    formData.append(
+      "location",
+      `${location.address_line1}, ${location.address_line2}`
+    );
 
     try {
       await axios.post(
@@ -42,10 +45,9 @@ const NewPost = (props) => {
   const searchLocation = async (e) => {
     e.preventDefault();
 
-    console.log(process.env.LOCATION_API);
     axios
       .get(
-        `${process.env.LOCATION_API}${enteredLocation.current.value}&apiKey=${process.env.ACCESS_API_KEY}`
+        `${process.env.REACT_APP_LOCATION_API_URL}${enteredLocation.current.value}&apiKey=${process.env.REACT_APP_LOCATION_API}`
       )
       .then((response) => {
         console.log(response.data.features);

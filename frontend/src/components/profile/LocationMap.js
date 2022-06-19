@@ -20,7 +20,7 @@ const LocationMap = (props) => {
         />
         <Marker position={[props.lat, props.lon]}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            {props.location}
           </Popup>
         </Marker>
       </MapContainer>
