@@ -18,12 +18,3 @@ class PostsTest(APITestCase):
         }
         response = self.client.post(create_url, create_data, format="json")
         self.assertEqual(status.HTTP_201_CREATED, response.status_code)
-
-
-
-
-
-
-
-
-

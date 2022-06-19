@@ -50,19 +50,12 @@ const NewPost = (props) => {
         `${process.env.REACT_APP_LOCATION_API_URL}${enteredLocation.current.value}&apiKey=${process.env.REACT_APP_LOCATION_API}`
       )
       .then((response) => {
-        console.log(response.data.features);
         setLocation(response.data.features[0].properties);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
-
-  if (location.length > 0) {
-    console.log(
-      `${location.properties.address_line1}, ${location.properties.address_line}`
-    );
-  }
 
   const searchLocationForm = (
     <form onSubmit={searchLocation}>

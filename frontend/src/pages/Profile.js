@@ -44,9 +44,9 @@ const Profile = () => {
   }, [nickname, updatePosts]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="search-user">Loading...</p>;
   } else if (error) {
-    return <p>Not found</p>;
+    return <p className="search-user">User not found. Please try again!</p>;
   }
 
   return (

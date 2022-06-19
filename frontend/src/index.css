@@ -159,3 +159,9 @@ p::first-letter {
   width: 100%;
   height: 100%;
 }
+
+/* NOT FOUND OR LOADING USER */
+.search-user {
+  text-align: center;
+  line-height: 3;
+}
