@@ -100,7 +100,7 @@ const PostDetails = (props) => {
         curentUser={currentUser === post.user.nickname}
         setUpdatePosts={props.setUpdatePosts}
       />
-      {post.location && (
+      {post.location && !props.home && (
         <p className={classes["location-name"]} onClick={() => props.setMapIsShow((prev) => !prev)}>
           {post.location}
         </p>

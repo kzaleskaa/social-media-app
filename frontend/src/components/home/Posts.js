@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Posts.module.css";
 import PostDetails from "../profile/PostDetails";
-import LocationMap from "../profile/LocationMap";
 
 const Posts = () => {
   const [posts, setPosts] = useState();
@@ -32,7 +31,7 @@ const Posts = () => {
     downloadPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  console.log(posts);
   return (
     <div className={classes["posts-container"]}>
       {posts &&
@@ -57,10 +56,7 @@ const Posts = () => {
                 alt="user's post"
               />
             </div>
-            <PostDetails post={item} setMapIsShow={setMapIsShow} />
-            {mapIsShow && (
-              <LocationMap onCloseModal={() => setMapIsShow(false)} />
-            )}
+            <PostDetails post={item} setMapIsShow={setMapIsShow} home={true}/>
           </div>
         ))}
     </div>

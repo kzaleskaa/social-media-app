@@ -5,9 +5,6 @@ from posts.models import Post
 
 class UserAccountManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
-        """
-        Creates and saves a User with the given data.
-        """
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -19,9 +16,6 @@ class UserAccountManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
-        """
-        Creates and saves a superuser with the given email and password.
-        """
         extra_fields.setdefault('is_active', True)
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
@@ -71,7 +65,5 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Follower(models.Model):
-    """Class represents the relationship between users. """
-
     follower_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name="follower")
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name="user")
