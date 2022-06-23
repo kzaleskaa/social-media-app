@@ -32,7 +32,11 @@ Clone this repo and install all required dependencies. Go into the project folde
 2. Add .env file with url:
   ```
   REACT_APP_BACKEND=http://127.0.0.1:8000
+  REACT_APP_LOCATION_API_URL = <API_URL>
+  REACT_APP_LOCATION_API=<API_KEY>
   ```
+  API_URL used in project [geoapify](https://api.geoapify.com/v1/geocode/search?text=).
+  
 3. Run the application
   ```
   npm start
@@ -74,6 +78,7 @@ Clone this repo and install all required dependencies. Go into the project folde
   ```
 
 ## IV. Final effect
+<img src="https://user-images.githubusercontent.com/62251989/175346250-cd419c99-9743-456e-ba37-2eb8371e0612.gif" />
 
 ## V. Credits
 - App icons created by Freepik - [Flaticon](https://www.flaticon.com/free-icons/app)
