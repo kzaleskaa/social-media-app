@@ -77,8 +77,8 @@ Clone this repo and install all required dependencies. Go into the project folde
   python manage.py runserver
   ```
 
-## IV. Final effect
+## 4. Final effect
 <img src="https://user-images.githubusercontent.com/62251989/175347679-81ed47b8-e58e-4cdc-ac3a-a69cdf2228f7.gif" />
 
-## V. Credits
+## 5. Credits
 - App icons created by Freepik - [Flaticon](https://www.flaticon.com/free-icons/app)
