@@ -29,7 +29,7 @@ Clone this repo and install all required dependencies. Go into the project folde
   ```
   npm install
   ```
-2. Add .env file with url:
+2. Add .env file with content:
   ```
   REACT_APP_BACKEND=http://127.0.0.1:8000
   REACT_APP_LOCATION_API_URL = <API_URL>
@@ -53,19 +53,19 @@ Clone this repo and install all required dependencies. Go into the project folde
   ```
 3. Install all necessary packages
   ```
-  pip install requirements.txt
+  pip install -r requirements.txt
   ```
 4. Add .env file with content:
   ```
   SECRET_KEY = <DJANGO SECRET KEY>
   
-  EMAIL_HOST = <EMAIL HOST>
-  EMAIL_HOST_USER = <EMAIL ADDRESS>
-  EMAIL_HOST_PASSWORD = <PASSWORD OF EMAIL ADDRESS>
+  EMAIL_HOST = <EMAIL_HOST>
+  EMAIL_HOST_USER = <EMAIL_ADDRESS>
+  EMAIL_HOST_PASSWORD = <PASSWORD_OF_EMAIL_ADDRESS>
   
-  DATABASE_NAME = <DATABASE NAME>  
-  DATABASE_USER = <MASTER USERNAME>
-  DATABASE_PASSWORD = <DATABASE PASSWORD>  
+  DATABASE_NAME = <DATABASE_NAME>  
+  DATABASE_USER = <MASTER_USERNAME>
+  DATABASE_PASSWORD = <DATABASE_PASSWORD>  
   DATABASE_HOST = <ENDPOINT>
   ```
 5. Create superuser to get access to administration site
@@ -78,7 +78,7 @@ Clone this repo and install all required dependencies. Go into the project folde
   ```
 
 ## IV. Final effect
-<img src="https://user-images.githubusercontent.com/62251989/175346250-cd419c99-9743-456e-ba37-2eb8371e0612.gif" />
+<img src="https://user-images.githubusercontent.com/62251989/175347679-81ed47b8-e58e-4cdc-ac3a-a69cdf2228f7.gif" />
 
 ## V. Credits
 - App icons created by Freepik - [Flaticon](https://www.flaticon.com/free-icons/app)
