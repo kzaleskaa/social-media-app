@@ -18,13 +18,16 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000'
+ALLOWED_HOSTS = [
+    '*'
 ]
 
-DOMAIN = 'localhost:3000'
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'kzaleskaa-tai.azurewebsites.net'
+]
+
+DOMAIN = '.azurewebsites.net'
 
 # Application definition
 
@@ -49,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,10 +67,12 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000"
+    "kzaleskaa-tai.azurewebsites.net"
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "kzaleskaa-tai.azurewebsites.net"
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -100,6 +106,9 @@ DATABASES = {
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('DATABASE_HOST'),
         'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': "require"
+        }
     }
 }
 
@@ -144,6 +153,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
