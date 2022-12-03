@@ -68,11 +68,16 @@ Clone this repo and install all required dependencies. Go into the project folde
   DATABASE_PASSWORD = <DATABASE_PASSWORD>  
   DATABASE_HOST = <ENDPOINT>
   ```
-5. Create superuser to get access to administration site
+5. Specify allowed hosts and cors allowed origins in `backend\settings.py` file
+6. Apply migrations to database
+  ```
+  python manage.py migrate
+  ```
+7. Create superuser to get access to administration site
   ```
   python manage.py createsuperuser
   ```
-6. Run backend
+8. Run backend
   ```
   python manage.py runserver
   ```
